@@ -1,0 +1,7 @@
+{
+  "@@locale" : "pt",
+  "appTitle" : "Movies",
+  "bottomNavigationHomeLabel" : "Início",
+  "bottomNavigationSearchLabel" : "Pesquisar",
+  "bottomNavigationFavoritesLabel" : "Favoritos"
+}
