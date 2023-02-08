@@ -6,13 +6,13 @@ class AppThemes {
   static final ThemeData theme = ThemeData(
     splashColor: AppColors.transparent,
     highlightColor: AppColors.transparent,
-    scaffoldBackgroundColor: AppColors.gray30,
+    scaffoldBackgroundColor: AppColors.darkGray,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       elevation: 0,
       enableFeedback: true,
       showUnselectedLabels: false,
       type: BottomNavigationBarType.fixed,
-      backgroundColor: AppColors.darkGray,
+      backgroundColor: AppColors.darkerGray,
       selectedItemColor: AppColors.lightGreen,
     ),
   );

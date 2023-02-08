@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/localization.dart';
+import 'package:flutter_gen/gen_l10n/localize.dart';
 
 import 'localization/localize.dart';
 import 'support/style/app_themes.dart';

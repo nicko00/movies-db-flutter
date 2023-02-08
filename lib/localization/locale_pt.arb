@@ -1,7 +1,14 @@
 {
   "@@locale" : "pt",
-  "appTitle" : "Movies",
+  "appTitle" : "HiFlix",
+  
   "bottomNavigationHomeLabel" : "Início",
   "bottomNavigationSearchLabel" : "Pesquisar",
-  "bottomNavigationFavoritesLabel" : "Favoritos"
+  "bottomNavigationFavoritesLabel" : "Favoritos",
+
+  "latestMoviesTitle": "Filmes mais recentes",
+
+  "serverErrorRequestError": "Aconteceu um erro inesperado com o servidor.",
+  "serverErrorTimeoutError": "O tempo de requisição esgotou, tente novamente mais tarde.",
+  "serverErrorMappingFailureError": "Ocorreu um erro na requisição"
 }
