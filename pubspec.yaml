@@ -11,10 +11,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
+  # Utils
   flutter_localizations:
     sdk: flutter
+  google_fonts: ^4.0.3
+  dio: ^4.0.6
+  pretty_dio_logger: ^1.1.1
   intl: ^0.17.0
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
