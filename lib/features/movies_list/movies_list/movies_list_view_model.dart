@@ -39,7 +39,7 @@ class MoviesListViewModel extends MoviesListProtocol {
       },
       failure: (error) {
         _movieImages.clear();
-        _setListWidgets(ErrorView(errorMessage: 'Não foi possível carregar as imagens'));
+        _setListWidgets(ErrorView(errorMessage: l10n.carouselSliderImageError));
       },
     );
   }
