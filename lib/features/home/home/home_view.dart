@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../localization/localize.dart';
-import '../../../support/components/default_screen.dart';
 import '../../../support/style/app_colors.dart';
 
 abstract class HomeViewModelProtocol extends ChangeNotifier {
@@ -23,36 +22,34 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = Localize.instance.l10n;
 
-    return DefaultScreen(
-      child: AnimatedBuilder(
-        animation: viewModel,
-        builder: (_, __) {
-          return Scaffold(
-            body: IndexedStack(
-              index: viewModel.currentIndex,
-              children: indexedChildren,
-            ),
-            bottomNavigationBar: BottomNavigationBar(
-              currentIndex: viewModel.currentIndex,
-              onTap: viewModel.didTapSelectedIndex,
-              items: [
-                _bottomNavigationItem(
-                  label: l10n.bottomNavigationHomeLabel,
-                  icon: Icons.home_rounded,
-                ),
-                _bottomNavigationItem(
-                  label: l10n.bottomNavigationSearchLabel,
-                  icon: Icons.search_rounded,
-                ),
-                _bottomNavigationItem(
-                  label: l10n.bottomNavigationFavoritesLabel,
-                  icon: Icons.favorite_rounded,
-                ),
-              ],
-            ),
-          );
-        },
-      ),
+    return AnimatedBuilder(
+      animation: viewModel,
+      builder: (_, __) {
+        return Scaffold(
+          body: IndexedStack(
+            index: viewModel.currentIndex,
+            children: indexedChildren,
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: viewModel.currentIndex,
+            onTap: viewModel.didTapSelectedIndex,
+            items: [
+              _bottomNavigationItem(
+                label: l10n.bottomNavigationHomeLabel,
+                icon: Icons.home_rounded,
+              ),
+              _bottomNavigationItem(
+                label: l10n.bottomNavigationSearchLabel,
+                icon: Icons.search_rounded,
+              ),
+              _bottomNavigationItem(
+                label: l10n.bottomNavigationFavoritesLabel,
+                icon: Icons.favorite_rounded,
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 
