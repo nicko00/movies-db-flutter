@@ -7,6 +7,11 @@
   "bottomNavigationFavoritesLabel" : "Favoritos",
 
   "latestMoviesTitle": "Filmes mais recentes",
+  "mostPopularMoviesTitle": "Filmes populares",
+  "topRatedMoviesTitle": "Os melhores avaliados",
+  "upcomingMoviesTitle": "Filmes por vir",
+
+  "carouselSliderImageError": "Não foi possível carregar as imagens",
 
   "serverErrorRequestError": "Aconteceu um erro inesperado com o servidor.",
   "serverErrorTimeoutError": "O tempo de requisição esgotou, tente novamente mais tarde.",

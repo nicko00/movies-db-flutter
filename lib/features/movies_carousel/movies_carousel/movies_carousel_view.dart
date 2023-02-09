@@ -34,7 +34,8 @@ class MoviesCarouselView extends StatelessWidget {
           );
         }
 
-        return Expanded(
+        return SizedBox(
+          height: 280,
           child: PageView.builder(
             physics: const BouncingScrollPhysics(),
             onPageChanged: viewModel.setIndex,
@@ -43,7 +44,7 @@ class MoviesCarouselView extends StatelessWidget {
             itemCount: viewModel.itemViewModels.length,
             itemBuilder: (_, index) {
               final itemViewModel = viewModel.itemViewModels[index];
-
+        
               return MovieCarouselItemView(itemViewModel: itemViewModel);
             },
           ),
