@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/localize.dart';
+
 import '../../../support/components/default_image_network.dart';
 import '../../../support/components/placeholders/error_view.dart';
 import '../../../support/components/placeholders/loading_view.dart';
@@ -37,7 +37,7 @@ class MoviesListViewModel extends MoviesListProtocol {
           );
         }
       },
-      failure: (error) {
+      failure: (_) {
         _movieImages.clear();
         _setListWidgets(ErrorView(errorMessage: l10n.carouselSliderImageError));
       },
@@ -45,7 +45,7 @@ class MoviesListViewModel extends MoviesListProtocol {
   }
 
   @override
-  void didTapIndicatorIndex(int index) {
+  void didChangeCurrentIndex(int index) {
     _currentIndex = index;
     notifyListeners();
   }

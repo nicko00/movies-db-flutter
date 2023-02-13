@@ -11,7 +11,7 @@ abstract class MoviesListViewModelProtocol with ChangeNotifier {
   int get currentIndex;
   List<Widget> get imagesList;
 
-  void didTapIndicatorIndex(int index);
+  void didChangeCurrentIndex(int index);
 }
 
 class MoviesListView extends StatelessWidget {
@@ -39,11 +39,12 @@ class MoviesListView extends StatelessWidget {
                     options: CarouselOptions(
                       height: 600,
                       padEnds: false,
-                      autoPlay: true,
-                      autoPlayInterval: const Duration(seconds: 8),
                       viewportFraction: 1,
+                      autoPlay: viewModel.imagesList.isNotEmpty,
+                      autoPlayInterval: const Duration(seconds: 8),
+                      enableInfiniteScroll: viewModel.imagesList.isNotEmpty,
                       onPageChanged: (index, _) {
-                        viewModel.didTapIndicatorIndex(index);
+                        viewModel.didChangeCurrentIndex(index);
                       },
                     ),
                   ),

@@ -8,6 +8,8 @@ abstract class MovieCarouselItemViewModelProtocol with ChangeNotifier {
   String get title;
   String get imageUrl;
   double get cardScale;
+
+  void didTapMovieItem();
 }
 
 class MovieCarouselItemView extends StatelessWidget {
@@ -17,22 +19,25 @@ class MovieCarouselItemView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        DefaultImageNetwork(
-          height: 200,
-          width: 160,
-          scale: itemViewModel.cardScale,
-          imageUrl: itemViewModel.imageUrl,
-        ),
-        Text(
-          itemViewModel.title,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-          textAlign: TextAlign.center,
-          style: AppFonts.montserratMedium(16, color: AppColors.white),
-        ),
-      ],
+    return InkWell(
+      onTap: itemViewModel.didTapMovieItem,
+      child: Column(
+        children: [
+          DefaultImageNetwork(
+            height: 200,
+            width: 160,
+            scale: itemViewModel.cardScale,
+            imageUrl: itemViewModel.imageUrl,
+          ),
+          Text(
+            itemViewModel.title,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+            style: AppFonts.montserratMedium(16, color: AppColors.white),
+          ),
+        ],
+      ),
     );
   }
 }
