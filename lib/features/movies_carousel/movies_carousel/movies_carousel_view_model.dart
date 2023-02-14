@@ -6,7 +6,7 @@ import 'item/movie_carousel_item_view.dart';
 import 'item/movie_carousel_item_view_model.dart';
 import 'movies_carousel_view_controller.dart';
 
-class MoviesCarouselViewModel extends MoviesCarouselProtocol {
+class MoviesCarouselViewModel extends MoviesCarouselProtocol implements MovieCarouselItemViewModelDelegate {
   int _currentIndex = 0;
   List<Movie>? _listMovies;
   bool _isLoading = false;
@@ -29,6 +29,7 @@ class MoviesCarouselViewModel extends MoviesCarouselProtocol {
 
     return movies.map((movie) {
       return MovieCarouselItemViewModel(
+        delegate: this,
         movie: movie,
         currentCard: _currentIndex,
         indexCard: movies.indexOf(movie),
@@ -69,5 +70,10 @@ class MoviesCarouselViewModel extends MoviesCarouselProtocol {
   void _setLoading(bool isLoading) {
     _isLoading = isLoading;
     notifyListeners();
+  }
+
+  @override
+  void didTapMovieDetails(Movie movie) {
+    onTapMovieDetails?.call(movie);
   }
 }
