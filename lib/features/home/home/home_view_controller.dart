@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../movies_list/movies_list/movies_list_view.dart';
-import '../../movies_list/movies_list/movies_list_view_controller.dart';
 import '../../movies_list/movies_list_factory.dart';
+import '../../search_movies/search_movies_factory.dart';
 import 'home_view.dart';
 
 abstract class HomeProtocol extends HomeViewModelProtocol {}
@@ -33,7 +32,7 @@ class _HomeViewControllerState extends State<HomeViewController> {
   List<Widget> _homeChildren() {
     return [
       MoviesListFactory.moviesListPage(),
-      Container(color: Colors.red),
+      SearchMoviesFactory.search(),
       Container(color: Colors.green),
     ];
   }

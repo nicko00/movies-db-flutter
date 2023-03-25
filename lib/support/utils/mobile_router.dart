@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../features/home/home_factory.dart';
 import '../../features/movie_details/movie_details_factory.dart';
+import '../../features/search_movies/search_movies_factory.dart';
 import '../../models/movie.dart';
 
 class MobileRouter {
@@ -13,6 +14,7 @@ class MobileRouter {
     MovieDetailsFactory.route: (context) {
       final movie = ModalRoute.of(context)?.settings.arguments as Movie;
       return MovieDetailsFactory.movieDetails(movie: movie);
-    }
+    },
+    SearchMoviesFactory.route: (_) => SearchMoviesFactory.search(),
   };
 }

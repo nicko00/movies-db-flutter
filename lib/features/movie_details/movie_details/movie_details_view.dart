@@ -25,6 +25,8 @@ class MovieDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SlidingUpPanel(
       color: AppColors.lighterBlack,
+      parallaxEnabled: true,
+      parallaxOffset: 0.2,
       minHeight: 200,
       maxHeight: 400,
       borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),

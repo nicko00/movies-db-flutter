@@ -25,68 +25,71 @@ class MoviesListView extends StatelessWidget {
 
     return DefaultScreen(
       padding: const EdgeInsets.all(0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          AnimatedBuilder(
-            animation: viewModel,
-            builder: (_, __) {
-              return Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  CarouselSlider(
-                    items: viewModel.imagesList,
-                    options: CarouselOptions(
-                      height: 600,
-                      padEnds: false,
-                      viewportFraction: 1,
-                      autoPlay: viewModel.imagesList.isNotEmpty,
-                      autoPlayInterval: const Duration(seconds: 8),
-                      enableInfiniteScroll: viewModel.imagesList.isNotEmpty,
-                      onPageChanged: (index, _) {
-                        viewModel.didChangeCurrentIndex(index);
-                      },
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            AnimatedBuilder(
+              animation: viewModel,
+              builder: (_, __) {
+                return Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: [
+                    CarouselSlider(
+                      items: viewModel.imagesList,
+                      options: CarouselOptions(
+                        height: 600,
+                        padEnds: false,
+                        viewportFraction: 1,
+                        autoPlay: viewModel.imagesList.isNotEmpty,
+                        autoPlayInterval: const Duration(seconds: 8),
+                        enableInfiniteScroll: viewModel.imagesList.isNotEmpty,
+                        onPageChanged: (index, _) {
+                          viewModel.didChangeCurrentIndex(index);
+                        },
+                      ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: viewModel.imagesList.map((image) {
-                      final index = viewModel.imagesList.indexOf(image);
-                      return Container(
-                        width: 8,
-                        height: 8,
-                        margin: const EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal: 4,
-                        ),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: _indicatorColor(index),
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                ],
-              );
-            },
-          ),
-          DefaultMoviesListTitle(title: l10n.latestMoviesTitle),
-          const SizedBox(height: 16),
-          MoviesCarouselFactory.latestMoviesCarousel(),
-          const SizedBox(height: 12),
-          DefaultMoviesListTitle(title: l10n.mostPopularMoviesTitle),
-          const SizedBox(height: 16),
-          MoviesCarouselFactory.mostPopularMoviesCarousel(),
-          const SizedBox(height: 12),
-          DefaultMoviesListTitle(title: l10n.topRatedMoviesTitle),
-          const SizedBox(height: 16),
-          MoviesCarouselFactory.topRatedMoviesCarousel(),
-          const SizedBox(height: 12),
-          DefaultMoviesListTitle(title: l10n.upcomingMoviesTitle),
-          const SizedBox(height: 16),
-          MoviesCarouselFactory.upcomingMoviesCarousel(),
-          const SizedBox(height: 12),
-        ],
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: viewModel.imagesList.map((image) {
+                        final index = viewModel.imagesList.indexOf(image);
+                        return Container(
+                          width: 8,
+                          height: 8,
+                          margin: const EdgeInsets.symmetric(
+                            vertical: 10,
+                            horizontal: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: _indicatorColor(index),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ],
+                );
+              },
+            ),
+            DefaultMoviesListTitle(title: l10n.latestMoviesTitle),
+            const SizedBox(height: 16),
+            MoviesCarouselFactory.latestMoviesCarousel(),
+            const SizedBox(height: 12),
+            DefaultMoviesListTitle(title: l10n.mostPopularMoviesTitle),
+            const SizedBox(height: 16),
+            MoviesCarouselFactory.mostPopularMoviesCarousel(),
+            const SizedBox(height: 12),
+            DefaultMoviesListTitle(title: l10n.topRatedMoviesTitle),
+            const SizedBox(height: 16),
+            MoviesCarouselFactory.topRatedMoviesCarousel(),
+            const SizedBox(height: 12),
+            DefaultMoviesListTitle(title: l10n.upcomingMoviesTitle),
+            const SizedBox(height: 16),
+            MoviesCarouselFactory.upcomingMoviesCarousel(),
+            const SizedBox(height: 12),
+          ],
+        ),
       ),
     );
   }

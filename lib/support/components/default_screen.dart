@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../style/app_colors.dart';
+
 class DefaultScreen extends StatelessWidget {
   final Widget child;
   final EdgeInsetsGeometry padding;
@@ -12,10 +14,10 @@ class DefaultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
+    return Container(
+      decoration: BoxDecoration(color: AppColors.darkGray),
+      child: Scaffold(
+        body: SafeArea(
           child: child,
         ),
       ),
