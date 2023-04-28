@@ -5,6 +5,8 @@ import '../../../support/style/app_colors.dart';
 
 abstract class HomeViewModelProtocol extends ChangeNotifier {
   int get currentIndex;
+  AnimationController get animationController;
+
   void didTapSelectedIndex(int index);
 }
 
@@ -26,9 +28,12 @@ class HomeView extends StatelessWidget {
       animation: viewModel,
       builder: (_, __) {
         return Scaffold(
-          body: IndexedStack(
-            index: viewModel.currentIndex,
-            children: indexedChildren,
+          body: FadeTransition(
+            opacity: viewModel.animationController,
+            child: IndexedStack(
+              index: viewModel.currentIndex,
+              children: indexedChildren,
+            ),
           ),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: viewModel.currentIndex,

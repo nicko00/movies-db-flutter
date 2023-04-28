@@ -52,6 +52,7 @@ class SearchMoviesViewModel extends SearchMoviesProtocol implements SearchMovies
   void searchMovies(String query) {
     if (query.isEmpty) {
       _listMovies = [];
+      notifyListeners();
       return;
     }
 
