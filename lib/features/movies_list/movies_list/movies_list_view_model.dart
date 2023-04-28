@@ -36,10 +36,12 @@ class MoviesListViewModel extends MoviesListProtocol {
             ),
           );
         }
+        notifyListeners();
       },
       failure: (_) {
         _movieImages.clear();
         _setListWidgets(ErrorView(errorMessage: l10n.carouselSliderImageError));
+        notifyListeners();
       },
     );
   }

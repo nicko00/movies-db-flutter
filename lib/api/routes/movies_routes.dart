@@ -4,6 +4,7 @@ import '../setup/endpoint.dart';
 
 abstract class MoviesRoutesProtocol {
   void getMovies({required String moviesListUrl, Success? success, Failure? failure});
+  void searchMovies({required String query, Success? success, Failure? failure});
 }
 
 class MoviesRoutes extends MoviesRoutesProtocol {
@@ -14,7 +15,27 @@ class MoviesRoutes extends MoviesRoutesProtocol {
     final endpoint = Endpoint(
       method: 'GET',
       path: moviesListUrl,
-      queryParameters: {'api_key': ApiHost.apiKey, 'language': 'pt-BR'},
+      queryParameters: {
+        'api_key': ApiHost.apiKey,
+        'language': 'pt-BR',
+        'include_adult': 'true',
+      },
+    );
+
+    _provider.request(endpoint: endpoint, success: success, failure: failure);
+  }
+
+  @override
+  void searchMovies({required String query, Success? success, Failure? failure}) {
+    final endpoint = Endpoint(
+      method: 'GET',
+      path: '/search/movie',
+      queryParameters: {
+        'api_key': ApiHost.apiKey,
+        'query': query,
+        'language': 'pt-BR',
+        'include_adult': 'true',
+      },
     );
 
     _provider.request(endpoint: endpoint, success: success, failure: failure);

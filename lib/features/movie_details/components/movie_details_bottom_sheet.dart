@@ -65,7 +65,7 @@ class MovieDetailsBottomSheet extends StatelessWidget {
                         RatingStarIndicator(rating: rating),
                         const SizedBox(width: 8),
                         Text(
-                          rating.toString(),
+                          rating.toStringAsFixed(1),
                           style: AppFonts.montserratMedium(16, color: AppColors.gray),
                         ),
                       ],
