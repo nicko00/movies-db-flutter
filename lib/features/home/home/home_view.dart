@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import '../../../localization/localize.dart';
@@ -28,30 +30,47 @@ class HomeView extends StatelessWidget {
       animation: viewModel,
       builder: (_, __) {
         return Scaffold(
-          body: FadeTransition(
-            opacity: viewModel.animationController,
-            child: IndexedStack(
-              index: viewModel.currentIndex,
-              children: indexedChildren,
+          extendBody: true,
+          body: SafeArea(
+            bottom: false,
+            child: FadeTransition(
+              opacity: viewModel.animationController,
+              child: IndexedStack(
+                index: viewModel.currentIndex,
+                children: indexedChildren,
+              ),
             ),
           ),
-          bottomNavigationBar: BottomNavigationBar(
-            currentIndex: viewModel.currentIndex,
-            onTap: viewModel.didTapSelectedIndex,
-            items: [
-              _bottomNavigationItem(
-                label: l10n.bottomNavigationHomeLabel,
-                icon: Icons.home_rounded,
+          bottomNavigationBar: Container(
+            decoration: BoxDecoration(
+              border: Border(
+                top: BorderSide(color: AppColors.gray30, width: 0.4)
               ),
-              _bottomNavigationItem(
-                label: l10n.bottomNavigationSearchLabel,
-                icon: Icons.search_rounded,
+            ),
+            child: ClipRect(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                child: BottomNavigationBar(
+                  backgroundColor: AppColors.transparent,
+                  currentIndex: viewModel.currentIndex,
+                  onTap: viewModel.didTapSelectedIndex,
+                  items: [
+                    _bottomNavigationItem(
+                      label: l10n.bottomNavigationHomeLabel,
+                      icon: Icons.home_rounded,
+                    ),
+                    _bottomNavigationItem(
+                      label: l10n.bottomNavigationSearchLabel,
+                      icon: Icons.search_rounded,
+                    ),
+                    _bottomNavigationItem(
+                      label: l10n.bottomNavigationFavoritesLabel,
+                      icon: Icons.favorite_rounded,
+                    ),
+                  ],
+                ),
               ),
-              _bottomNavigationItem(
-                label: l10n.bottomNavigationFavoritesLabel,
-                icon: Icons.favorite_rounded,
-              ),
-            ],
+            ),
           ),
         );
       },

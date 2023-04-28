@@ -46,7 +46,7 @@ class SearchMoviesViewModel extends SearchMoviesProtocol implements SearchMovies
 
   @override
   void didTapMovieDetails(Movie movie) {
-    // TODO: implement didTapMovieDetails
+    onTapMovieDetails?.call(movie);
   }
 
   void searchMovies(String query) {

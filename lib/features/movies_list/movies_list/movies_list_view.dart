@@ -24,7 +24,6 @@ class MoviesListView extends StatelessWidget {
     final l10n = Localize.instance.l10n;
 
     return DefaultScreen(
-      padding: const EdgeInsets.all(0),
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(

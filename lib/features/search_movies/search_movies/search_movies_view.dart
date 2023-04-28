@@ -21,31 +21,35 @@ class SearchMoviesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultScreen(
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 4),
-            DefaultTextFormField(
-              hintText: 'Pesquisar',
-              onChanged: viewModel.onChangeText,
-            ),
-            const SizedBox(height: 20),
-            Expanded(
-              child: AnimatedBuilder(
-                animation: viewModel,
-                builder: (_, __) {
-                  return AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 500),
-                    child: _bodyWidget,
-                  );
-                },
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: DefaultScreen(
+        isBottomBarTransparent: true,
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 4),
+              DefaultTextFormField(
+                hintText: 'Pesquisar',
+                onChanged: viewModel.onChangeText,
               ),
-            ),
-          ],
+              const SizedBox(height: 20),
+              Expanded(
+                child: AnimatedBuilder(
+                  animation: viewModel,
+                  builder: (_, __) {
+                    return AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 500),
+                      child: _bodyWidget,
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

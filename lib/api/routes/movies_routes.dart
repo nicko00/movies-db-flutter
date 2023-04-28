@@ -15,7 +15,11 @@ class MoviesRoutes extends MoviesRoutesProtocol {
     final endpoint = Endpoint(
       method: 'GET',
       path: moviesListUrl,
-      queryParameters: {'api_key': ApiHost.apiKey, 'language': 'pt-BR'},
+      queryParameters: {
+        'api_key': ApiHost.apiKey,
+        'language': 'pt-BR',
+        'include_adult': 'true',
+      },
     );
 
     _provider.request(endpoint: endpoint, success: success, failure: failure);
@@ -30,6 +34,7 @@ class MoviesRoutes extends MoviesRoutesProtocol {
         'api_key': ApiHost.apiKey,
         'query': query,
         'language': 'pt-BR',
+        'include_adult': 'true',
       },
     );
 

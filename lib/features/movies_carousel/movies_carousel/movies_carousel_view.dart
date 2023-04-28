@@ -24,32 +24,40 @@ class MoviesCarouselView extends StatelessWidget {
     return AnimatedBuilder(
       animation: viewModel,
       builder: (_, __) {
-        if (viewModel.isLoading) return const LoadingView();
-        if (viewModel.errorMessage.isNotEmpty) {
-          return Center(
-            child: Text(
-              viewModel.errorMessage,
-              style: AppFonts.playfairMedium(16, color: AppColors.red),
-            ),
-          );
-        }
-
-        return SizedBox(
-          height: 280,
-          child: PageView.builder(
-            physics: const BouncingScrollPhysics(),
-            onPageChanged: viewModel.setIndex,
-            padEnds: false,
-            controller: viewModel.pageViewController,
-            itemCount: viewModel.itemViewModels.length,
-            itemBuilder: (_, index) {
-              final itemViewModel = viewModel.itemViewModels[index];
-        
-              return MovieCarouselItemView(itemViewModel: itemViewModel);
-            },
-          ),
+        return AnimatedSwitcher(
+          duration: const Duration(milliseconds: 500),
+          child: _bodyWidget,
         );
       },
+    );
+  }
+
+  Widget get _bodyWidget {
+    if (viewModel.isLoading) return const LoadingView();
+    
+    if (viewModel.errorMessage.isNotEmpty) {
+      return Center(
+        child: Text(
+          viewModel.errorMessage,
+          style: AppFonts.playfairMedium(16, color: AppColors.red),
+        ),
+      );
+    }
+
+    return SizedBox(
+      height: 280,
+      child: PageView.builder(
+        physics: const BouncingScrollPhysics(),
+        onPageChanged: viewModel.setIndex,
+        padEnds: false,
+        controller: viewModel.pageViewController,
+        itemCount: viewModel.itemViewModels.length,
+        itemBuilder: (_, index) {
+          final itemViewModel = viewModel.itemViewModels[index];
+
+          return MovieCarouselItemView(itemViewModel: itemViewModel);
+        },
+      ),
     );
   }
 }

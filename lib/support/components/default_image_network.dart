@@ -21,8 +21,6 @@ class DefaultImageNetwork extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = Localize.instance.l10n;
-
     return SizedBox(
       width: width,
       height: height,
