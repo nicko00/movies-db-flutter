@@ -8,7 +8,9 @@ import 'item/search_movies_item_view.dart';
 
 abstract class SearchMoviesViewModelProtocol with ChangeNotifier {
   bool get isLoading;
+  bool get isRefreshLoading;
   String? get errorMesssage;
+  ScrollController get scrollController;
   List<SearchMoviesItemViewModelProtocol> get itemViewModels;
 
   void onChangeText(String text);
@@ -65,22 +67,39 @@ class SearchMoviesView extends StatelessWidget {
       );
     }
 
-    return Flexible(
-      child: GridView.builder(
-        physics: const BouncingScrollPhysics(),
-        itemCount: viewModel.itemViewModels.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio: 1 / 1.5,
-          mainAxisSpacing: 4,
-          crossAxisSpacing: 8,
-          crossAxisCount: 2,
+    return Column(
+      children: [
+        Flexible(
+          child: GridView.builder(
+            physics: const BouncingScrollPhysics(),
+            itemCount: viewModel.itemViewModels.length,
+            controller: viewModel.scrollController,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              childAspectRatio: 1 / 1.5,
+              mainAxisSpacing: 4,
+              crossAxisSpacing: 8,
+              crossAxisCount: 2,
+            ),
+            itemBuilder: (_, index) {
+              final itemViewModel = viewModel.itemViewModels[index];
+        
+              return SearchMoviesItemView(itemViewModel: itemViewModel);
+            },
+          ),
         ),
-        itemBuilder: (_, index) {
-          final itemViewModel = viewModel.itemViewModels[index];
-
-          return SearchMoviesItemView(itemViewModel: itemViewModel);
-        },
-      ),
+        Visibility(
+          visible: viewModel.isRefreshLoading,
+          child: Column(
+            children: const [
+              Positioned(
+                bottom: 0,
+                child: LoadingView(),
+              ),
+              SizedBox(height: 40),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

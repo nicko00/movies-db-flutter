@@ -7,9 +7,11 @@ import 'item/movie_carousel_item_view_model.dart';
 import 'movies_carousel_view_controller.dart';
 
 class MoviesCarouselViewModel extends MoviesCarouselProtocol implements MovieCarouselItemViewModelDelegate {
+  final List<Movie> _listMovies = [];
   int _currentIndex = 0;
-  List<Movie>? _listMovies;
   bool _isLoading = false;
+  bool _isRefreshLoading = false;
+  int _page = 1;
   String _errorMessage = '';
 
   final PageController pageController;
@@ -25,39 +27,45 @@ class MoviesCarouselViewModel extends MoviesCarouselProtocol implements MovieCar
 
   @override
   List<MovieCarouselItemViewModelProtocol> get itemViewModels {
-    final movies = _listMovies ?? [];
-
-    return movies.map((movie) {
+    return _listMovies.map((movie) {
       return MovieCarouselItemViewModel(
         delegate: this,
         movie: movie,
         currentCard: _currentIndex,
-        indexCard: movies.indexOf(movie),
+        indexCard: _listMovies.indexOf(movie),
       );
     }).toList();
   }
 
   @override
   PageController get pageViewController => pageController;
+  
+  @override
+  bool get isRefreshLoading => _isRefreshLoading;
 
   @override
   void setIndex(int index) {
     _currentIndex = index;
+    if (_currentIndex + 1 == itemViewModels.length && !_isLoading) {
+      _page++;
+      getMovies(isRefresh: true);
+    }
     notifyListeners();
   }
 
   @override
-  void getMovies() {
-    _setLoading(true);
+  void getMovies({bool isRefresh = false}) {
+    _setLoading(true, isRefresh: isRefresh);
 
     getMoviesUseCase.execute(
+      page: _page,
       success: (response) {
-        _listMovies = response;
-        _setLoading(false);
+        _listMovies.addAll(response);
+        _setLoading(false, isRefresh: isRefresh);
       },
       failure: (error) {
         _errorMessage = error.description;
-        _setLoading(false);
+        _setLoading(false, isRefresh: isRefresh);
       },
     );
   }
@@ -67,13 +75,18 @@ class MoviesCarouselViewModel extends MoviesCarouselProtocol implements MovieCar
     pageController.addListener(notifyListeners);
   }
 
-  void _setLoading(bool isLoading) {
-    _isLoading = isLoading;
-    notifyListeners();
-  }
-
   @override
   void didTapMovieDetails(Movie movie) {
     onTapMovieDetails?.call(movie);
+  }
+
+  void _setLoading(bool isLoading, {bool isRefresh = false}) {
+    if (isRefresh) {
+      _isRefreshLoading = isLoading;
+    } else {
+      _isLoading = isLoading;
+    }
+    
+    notifyListeners();
   }
 }

@@ -6,7 +6,7 @@ typedef Success = void Function(List<Movie> movies);
 typedef Failure = void Function(ServerError error);
 
 abstract class SearchMoviesUseCaseProtocol {
-  void execute({required String query, Success? success, Failure? failure});
+  void execute({required int page, required String query, Success? success, Failure? failure});
 }
 
 class SearchMoviesUseCase extends SearchMoviesUseCaseProtocol {
@@ -15,8 +15,9 @@ class SearchMoviesUseCase extends SearchMoviesUseCaseProtocol {
   SearchMoviesUseCase({required this.routes});
 
   @override
-  void execute({required String query, Success? success, Failure? failure}) {
+  void execute({required int page, required String query, Success? success, Failure? failure}) {
     routes.searchMovies(
+      page: page,
       query: query,
       success: (response) {
         try {

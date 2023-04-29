@@ -6,7 +6,7 @@ typedef Success = void Function(List<Movie> movies);
 typedef Failure = void Function(ServerError error);
 
 abstract class GetMoviesUseCaseProtocol {
-  void execute({Success? success, Failure? failure});
+  void execute({required int page, Success? success, Failure? failure});
 }
 
 class GetMoviesUseCase extends GetMoviesUseCaseProtocol {
@@ -16,8 +16,9 @@ class GetMoviesUseCase extends GetMoviesUseCaseProtocol {
   GetMoviesUseCase({required this.routes, required this.moviesPath});
 
   @override
-  void execute({Success? success, Failure? failure}) {
+  void execute({required int page, Success? success, Failure? failure}) {
     routes.getMovies(
+      page: page,
       moviesListUrl: moviesPath,
       success: (response) {
         try {

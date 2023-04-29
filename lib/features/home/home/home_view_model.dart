@@ -11,7 +11,10 @@ class HomeViewModel extends HomeProtocol {
 
   @override
   void didTapSelectedIndex(int index) {
-    if(index != currentIndex) onTapSelectedIndex?.call();
+    if (index != currentIndex) {
+      
+      onTapSelectedIndex?.call();
+    }
     _currentIndex = index;
     notifyListeners();
   }

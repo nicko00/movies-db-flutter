@@ -8,6 +8,7 @@ import 'item/movie_carousel_item_view.dart';
 abstract class MoviesCarouselViewModelProtocol with ChangeNotifier {
   bool get isLoading;
   String get errorMessage;
+  bool get isRefreshLoading;
   PageController get pageViewController;
   List<MovieCarouselItemViewModelProtocol> get itemViewModels;
 
@@ -34,7 +35,7 @@ class MoviesCarouselView extends StatelessWidget {
 
   Widget get _bodyWidget {
     if (viewModel.isLoading) return const LoadingView();
-    
+
     if (viewModel.errorMessage.isNotEmpty) {
       return Center(
         child: Text(
@@ -44,20 +45,31 @@ class MoviesCarouselView extends StatelessWidget {
       );
     }
 
-    return SizedBox(
-      height: 280,
-      child: PageView.builder(
-        physics: const BouncingScrollPhysics(),
-        onPageChanged: viewModel.setIndex,
-        padEnds: false,
-        controller: viewModel.pageViewController,
-        itemCount: viewModel.itemViewModels.length,
-        itemBuilder: (_, index) {
-          final itemViewModel = viewModel.itemViewModels[index];
+    return Stack(
+      alignment: Alignment.centerRight,
+      children: [
+        SizedBox(
+          height: 280,
+          child: PageView.builder(
+            physics: const BouncingScrollPhysics(),
+            onPageChanged: viewModel.setIndex,
+            controller: viewModel.pageViewController,
+            itemCount: viewModel.itemViewModels.length,
+            itemBuilder: (_, index) {
+              final itemViewModel = viewModel.itemViewModels[index];
 
-          return MovieCarouselItemView(itemViewModel: itemViewModel);
-        },
-      ),
+              return MovieCarouselItemView(itemViewModel: itemViewModel);
+            },
+          ),
+        ),
+        Positioned(
+          right: 0,
+          child: Visibility(
+            visible: viewModel.isRefreshLoading,
+            child: const LoadingView(),
+          ),
+        ),
+      ],
     );
   }
 }
