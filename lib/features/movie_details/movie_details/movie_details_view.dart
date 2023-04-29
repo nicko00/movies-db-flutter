@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import '../../../support/components/default_icon_button.dart';
+import '../../../support/components/default_image_network.dart';
 import '../../../support/components/default_screen.dart';
 import '../../../support/style/app_colors.dart';
 import '../components/movie_details_bottom_sheet.dart';
@@ -33,9 +34,9 @@ class MovieDetailsView extends StatelessWidget {
       body: DefaultScreen(
         child: Stack(
           children: [
-            Image.network(
-              viewModel.moviePosterUrl,
-              fit: BoxFit.cover,
+            DefaultImageNetwork(
+              imageUrl: viewModel.moviePosterUrl,
+              scale: 1,
             ),
             Positioned(
               top: 8,

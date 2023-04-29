@@ -29,12 +29,17 @@ class DefaultImageNetwork extends StatelessWidget {
         padding: EdgeInsets.all(scale),
         child: Image.network(
           imageUrl,
+          fit: BoxFit.cover,
           filterQuality: FilterQuality.high,
-          errorBuilder: (_, __, ___) {
-            return Container(
-              width: 100,
-              height: 200,
-              decoration: BoxDecoration(color: AppColors.gray30),
+          errorBuilder: (_, child, ___) {
+            return LayoutBuilder(
+              builder: (_, constraints) {
+                return Container(
+                  width: constraints.maxWidth,
+                  height: constraints.maxHeight,
+                  decoration: BoxDecoration(color: AppColors.gray30),
+                );
+              }
             );
           },
           loadingBuilder: (_, child, loadingProgress) {
