@@ -25,6 +25,12 @@ class _SearchMoviesViewControllerState extends State<SearchMoviesViewController>
   }
 
   @override
+  void dispose() {
+    widget.viewModel.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SearchMoviesView(viewModel: widget.viewModel);
   }

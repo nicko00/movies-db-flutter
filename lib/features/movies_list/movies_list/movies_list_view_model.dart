@@ -26,6 +26,7 @@ class MoviesListViewModel extends MoviesListProtocol {
   void getMovies() {
     _setListWidgets(const LoadingView());
     getMoviesuseCase.execute(
+      page: 1,
       success: (movies) {
         _movieImages.clear();
         for (var i = 0; i < 3; i++) {

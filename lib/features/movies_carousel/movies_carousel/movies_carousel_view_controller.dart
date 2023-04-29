@@ -7,7 +7,7 @@ import 'movies_carousel_view.dart';
 abstract class MoviesCarouselProtocol extends MoviesCarouselViewModelProtocol {
   void Function(Movie movie)? onTapMovieDetails;
 
-  void getMovies();
+  void getMovies({bool isRefresh = false});
   void addListenerPageController();
 }
 
