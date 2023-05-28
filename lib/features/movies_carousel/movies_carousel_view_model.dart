@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../models/movie.dart';
-import '../use_cases/get_movies_use_case.dart';
 import 'item/movie_carousel_item_view.dart';
 import 'item/movie_carousel_item_view_model.dart';
 import 'movies_carousel_view_controller.dart';
+import 'use_cases/get_movies_use_case.dart';
 
 class MoviesCarouselViewModel extends MoviesCarouselProtocol implements MovieCarouselItemViewModelDelegate {
   final List<Movie> _listMovies = [];
@@ -39,7 +39,7 @@ class MoviesCarouselViewModel extends MoviesCarouselProtocol implements MovieCar
 
   @override
   PageController get pageViewController => pageController;
-  
+
   @override
   bool get isRefreshLoading => _isRefreshLoading;
 
@@ -86,7 +86,7 @@ class MoviesCarouselViewModel extends MoviesCarouselProtocol implements MovieCar
     } else {
       _isLoading = isLoading;
     }
-    
+
     notifyListeners();
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../movies_list/movies_list_factory.dart';
-import '../../search_movies/search_movies_factory.dart';
+import '../movies_list/movies_list_factory.dart';
+import '../search_movies/search_movies_factory.dart';
 import 'home_view.dart';
 
 abstract class HomeProtocol extends HomeViewModelProtocol {
@@ -23,12 +23,14 @@ class _HomeViewControllerState extends State<HomeViewController> with TickerProv
   @override
   void initState() {
     super.initState();
-    widget.viewModel.animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 500),
-    );
-    widget.viewModel.animationController.forward();
     _bind();
+    _setupAnimationController();
+  }
+
+  @override
+  void dispose() {
+    widget.viewModel.animationController.dispose();
+    super.dispose();
   }
 
   @override
@@ -51,5 +53,13 @@ class _HomeViewControllerState extends State<HomeViewController> with TickerProv
     widget.viewModel.onTapSelectedIndex = () {
       widget.viewModel.animationController.forward(from: 0);
     };
+  }
+
+  void _setupAnimationController() {
+    widget.viewModel.animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+    widget.viewModel.animationController.forward();
   }
 }

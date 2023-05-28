@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../localization/localize.dart';
 import '../style/app_colors.dart';
-import 'placeholders/error_view.dart';
-import 'placeholders/loading_view.dart';
+import 'placeholders/shimmer_loading_placeholder.dart';
 
 class DefaultImageNetwork extends StatelessWidget {
   final String imageUrl;
@@ -15,7 +13,7 @@ class DefaultImageNetwork extends StatelessWidget {
     super.key,
     this.height,
     this.width,
-    required this.scale,
+    this.scale = 0,
     required this.imageUrl,
   });
 
@@ -32,20 +30,33 @@ class DefaultImageNetwork extends StatelessWidget {
           fit: BoxFit.cover,
           filterQuality: FilterQuality.high,
           errorBuilder: (_, child, ___) {
-            return LayoutBuilder(
-              builder: (_, constraints) {
-                return Container(
-                  width: constraints.maxWidth,
-                  height: constraints.maxHeight,
-                  decoration: BoxDecoration(color: AppColors.gray30),
-                );
-              }
-            );
+            return LayoutBuilder(builder: (_, constraints) {
+              return Container(
+                width: constraints.maxWidth,
+                height: constraints.maxHeight,
+                decoration: BoxDecoration(color: AppColors.gray30),
+              );
+            });
           },
           loadingBuilder: (_, child, loadingProgress) {
             if (loadingProgress == null) return child;
 
-            return const LoadingView();
+            return LayoutBuilder(
+              builder: (_, constraints) {
+                return ShimmerLoadingPlaceholder(
+                  baseColor: AppColors.gray,
+                  highlightColor: AppColors.gray30,
+                  child: Container(
+                    height: constraints.maxHeight,
+                    width: constraints.maxWidth,
+                    decoration: BoxDecoration(
+                      color: AppColors.gray,
+                      borderRadius: const BorderRadius.all(Radius.circular(8)),
+                    ),
+                  ),
+                );
+              },
+            );
           },
         ),
       ),

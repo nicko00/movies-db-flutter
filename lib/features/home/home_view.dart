@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import '../../../localization/localize.dart';
-import '../../../support/style/app_colors.dart';
+import '../../localization/localize.dart';
+import '../../support/style/app_colors.dart';
 
 abstract class HomeViewModelProtocol extends ChangeNotifier {
   int get currentIndex;
@@ -31,14 +31,11 @@ class HomeView extends StatelessWidget {
       builder: (_, __) {
         return Scaffold(
           extendBody: true,
-          body: SafeArea(
-            bottom: false,
-            child: FadeTransition(
-              opacity: viewModel.animationController,
-              child: IndexedStack(
-                index: viewModel.currentIndex,
-                children: indexedChildren,
-              ),
+          body: FadeTransition(
+            opacity: viewModel.animationController,
+            child: IndexedStack(
+              index: viewModel.currentIndex,
+              children: indexedChildren,
             ),
           ),
           bottomNavigationBar: Container(

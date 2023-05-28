@@ -5,10 +5,12 @@ import '../style/app_colors.dart';
 class DefaultScreen extends StatelessWidget {
   final Widget child;
   final EdgeInsetsGeometry padding;
+  final bool hasTopSafeArea;
   final bool isBottomBarTransparent;
 
   const DefaultScreen({
     super.key,
+    this.hasTopSafeArea = true,
     this.isBottomBarTransparent = false,
     this.padding = const EdgeInsets.all(8),
     required this.child,
@@ -21,6 +23,7 @@ class DefaultScreen extends StatelessWidget {
       child: Scaffold(
         extendBody: isBottomBarTransparent,
         body: SafeArea(
+          top: hasTopSafeArea,
           bottom: !isBottomBarTransparent,
           child: child,
         ),

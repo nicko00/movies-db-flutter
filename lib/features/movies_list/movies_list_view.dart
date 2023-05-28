@@ -1,11 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-import '../../../localization/localize.dart';
-import '../../../support/components/default_movies_list_title.dart';
-import '../../../support/components/default_screen.dart';
-import '../../../support/style/app_colors.dart';
-import '../../movies_carousel/movies_carousel_factory.dart';
+import '../../localization/localize.dart';
+import '../../support/components/default_movies_list_title.dart';
+import '../../support/components/default_screen.dart';
+import '../../support/style/app_colors.dart';
+import '../movies_carousel/movies_carousel_factory.dart';
 
 abstract class MoviesListViewModelProtocol with ChangeNotifier {
   int get currentIndex;
@@ -24,6 +24,7 @@ class MoviesListView extends StatelessWidget {
     final l10n = Localize.instance.l10n;
 
     return DefaultScreen(
+      padding: const EdgeInsets.all(0),
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(

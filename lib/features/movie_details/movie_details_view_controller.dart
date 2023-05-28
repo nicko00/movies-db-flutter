@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../components/movie_details_bottom_sheet.dart';
 import 'movie_details_view.dart';
 
 abstract class MovieDetailsProtocol extends MovieDetailsViewModelProtocol {
@@ -16,7 +14,8 @@ class MovieDetailsViewController extends StatefulWidget {
   State<StatefulWidget> createState() => _MovieDetailsViewControllerState();
 }
 
-class _MovieDetailsViewControllerState extends State<MovieDetailsViewController> {
+class _MovieDetailsViewControllerState
+    extends State<MovieDetailsViewController> {
   @override
   void initState() {
     super.initState();

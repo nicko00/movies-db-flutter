@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../models/movie.dart';
-import '../../movie_details/movie_details_factory.dart';
+import '../movie_details/movie_details_factory.dart';
 import 'search_movies_view.dart';
 
 abstract class SearchMoviesProtocol extends SearchMoviesViewModelProtocol {

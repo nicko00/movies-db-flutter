@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../api/routes/movies_routes.dart';
 import '../../localization/localize.dart';
 import '../movies_carousel/use_cases/get_movies_use_case.dart';
-import 'movies_list/movies_list_view_controller.dart';
-import 'movies_list/movies_list_view_model.dart';
+import 'movies_list_view_controller.dart';
+import 'movies_list_view_model.dart';
 
 class MoviesListFactory {
   static const String route = '/movies_list';
@@ -20,7 +20,7 @@ class MoviesListFactory {
 
     final viewModel = MoviesListViewModel(
       l10n: l10n,
-      getMoviesuseCase: getLatestMoviesUseCase,
+      getMoviesUseCase: getLatestMoviesUseCase,
     );
 
     return MoviesListViewController(viewModel: viewModel);

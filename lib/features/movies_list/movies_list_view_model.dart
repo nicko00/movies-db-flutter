@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/localize.dart';
 import '../../../support/components/default_image_network.dart';
 import '../../../support/components/placeholders/error_view.dart';
 import '../../../support/components/placeholders/loading_view.dart';
-import '../../movies_carousel/use_cases/get_movies_use_case.dart';
+import '../movies_carousel/use_cases/get_movies_use_case.dart';
 import 'movies_list_view_controller.dart';
 
 class MoviesListViewModel extends MoviesListProtocol {
@@ -12,9 +12,9 @@ class MoviesListViewModel extends MoviesListProtocol {
   final List<Widget> _movieImages = [];
 
   final Localization l10n;
-  final GetMoviesUseCaseProtocol getMoviesuseCase;
+  final GetMoviesUseCaseProtocol getMoviesUseCase;
 
-  MoviesListViewModel({required this.l10n, required this.getMoviesuseCase});
+  MoviesListViewModel({required this.l10n, required this.getMoviesUseCase});
 
   @override
   List<Widget> get imagesList => _movieImages;
@@ -25,7 +25,7 @@ class MoviesListViewModel extends MoviesListProtocol {
   @override
   void getMovies() {
     _setListWidgets(const LoadingView());
-    getMoviesuseCase.execute(
+    getMoviesUseCase.execute(
       page: 1,
       success: (movies) {
         _movieImages.clear();

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/movie.dart';
-import '../../movie_details/movie_details_factory.dart';
+import '../../models/movie.dart';
+import '../movie_details/movie_details_factory.dart';
 import 'movies_carousel_view.dart';
 
 abstract class MoviesCarouselProtocol extends MoviesCarouselViewModelProtocol {
   void Function(Movie movie)? onTapMovieDetails;
 
-  void getMovies({bool isRefresh = false});
+  void getMovies();
   void addListenerPageController();
 }
 

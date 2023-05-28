@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../../../support/components/default_screen.dart';
-import '../../../support/components/default_text_form_field.dart';
-import '../../../support/components/placeholders/empty_placeholder.dart';
-import '../../../support/components/placeholders/loading_view.dart';
+import '../../support/components/default_screen.dart';
+import '../../support/components/default_text_form_field.dart';
+import '../../support/components/placeholders/empty_placeholder.dart';
+import '../../support/components/placeholders/loading_view.dart';
 import 'item/search_movies_item_view.dart';
 
 abstract class SearchMoviesViewModelProtocol with ChangeNotifier {
   bool get isLoading;
   bool get isRefreshLoading;
-  String? get errorMesssage;
+  String? get errorMessage;
   ScrollController get scrollController;
   List<SearchMoviesItemViewModelProtocol> get itemViewModels;
 

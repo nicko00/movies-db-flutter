@@ -33,7 +33,7 @@ class SearchMoviesViewModel extends SearchMoviesProtocol implements SearchMovies
   bool get isLoading => _isLoading;
 
   @override
-  String? get errorMesssage => _errorMessage;
+  String? get errorMessage => _errorMessage;
 
   @override
   ScrollController get scrollController => _scrollController;
