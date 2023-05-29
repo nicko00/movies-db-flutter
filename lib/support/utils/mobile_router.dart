@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import '../../features/home/home_factory.dart';
 import '../../features/movie_details/movie_details_factory.dart';
 import '../../features/search_movies/search_movies_factory.dart';
+import '../../features/splash/splash_factory.dart';
 import '../../models/movie.dart';
 
 class MobileRouter {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-  static const String initialRoute = HomeFactory.route;
+  static const String initialRoute = SplashFactory.route;
 
   static final Map<String, WidgetBuilder> routes = {
     HomeFactory.route: (_) => HomeFactory.home(),
@@ -16,5 +17,6 @@ class MobileRouter {
       return MovieDetailsFactory.movieDetails(movie: movie);
     },
     SearchMoviesFactory.route: (_) => SearchMoviesFactory.search(),
+    SplashFactory.route: (_) => SplashFactory.splash(),
   };
 }

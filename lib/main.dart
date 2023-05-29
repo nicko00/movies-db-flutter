@@ -5,7 +5,10 @@ import 'localization/localize.dart';
 import 'support/style/app_themes.dart';
 import 'support/utils/mobile_router.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

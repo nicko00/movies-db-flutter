@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import '../../style/app_colors.dart';
 
 class LoadingView extends StatelessWidget {
-  const LoadingView({super.key});
+  final Color? color;
+
+  const LoadingView({super.key, this.color});
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: CircularProgressIndicator(
-        color: AppColors.white,
+        color: color ?? AppColors.white,
       ),
     );
   }

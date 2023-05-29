@@ -4,6 +4,7 @@ import '../style/app_colors.dart';
 import '../style/app_fonts.dart';
 
 class DefaultTextFormField extends StatelessWidget {
+  final IconData? icon;
   final bool isEnabled;
   final bool isPrimary;
   final String? counter;
@@ -18,6 +19,7 @@ class DefaultTextFormField extends StatelessWidget {
 
   const DefaultTextFormField({
     super.key,
+    this.icon,
     this.hintText,
     this.onChanged,
     this.errorText,
@@ -30,42 +32,47 @@ class DefaultTextFormField extends StatelessWidget {
     this.keyboardType = TextInputType.text,
   });
 
-  OutlineInputBorder get _focusedInputBorder {
-    return isPrimary ? _inputBorder(AppColors.white10) : _inputBorder(AppColors.darkerGray);
-  }
-
-  OutlineInputBorder get _enabledInputBorder {
-    return isPrimary ? _inputBorder(AppColors.white60) : _inputBorder(AppColors.darkGray);
-  }
-
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      enabled: isEnabled,
-      onChanged: onChanged,
-      controller: controller,
-      obscureText: obscureText,
-      initialValue: initialValue,
-      keyboardType: keyboardType,
-      decoration: InputDecoration(
-        hintText: hintText,
-        errorText: errorText,
-        hintStyle: _inputHintStyle(),
-        enabledBorder: _enabledInputBorder,
-        focusedBorder: _focusedInputBorder,
-        disabledBorder: _inputBorder(AppColors.gray30),
-        errorStyle: AppFonts.playfairMedium(12, color: AppColors.red),
-      ),
+    return Column(
+      children: [
+        Card(
+          color: AppColors.darkerGray,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+          child: TextFormField(
+            enabled: isEnabled,
+            onChanged: onChanged,
+            controller: controller,
+            obscureText: obscureText,
+            initialValue: initialValue,
+            keyboardType: keyboardType,
+            decoration: InputDecoration(
+              icon: _inputIcon,
+              border: InputBorder.none,
+              hintText: hintText,
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: icon != null ? 0 : 12,
+                vertical: 24,
+              ),
+              hintStyle: AppFonts.montserratRegular(13, color: AppColors.gray30),
+              errorStyle: AppFonts.playfairMedium(12, color: AppColors.red),
+            ),
+          ),
+        ),
+        Text(
+          errorText ?? '',
+          style: AppFonts.montserratRegular(13, color: AppColors.red),
+        ),
+      ],
     );
   }
 
-  OutlineInputBorder _inputBorder(Color color) {
-    return OutlineInputBorder(borderSide: BorderSide(color: color, width: 2));
-  }
-
-  TextStyle _inputHintStyle() {
-    if (isPrimary) return AppFonts.montserratRegular(14, color: AppColors.gray30);
-
-    return AppFonts.montserratRegular(14, color: AppColors.darkGray);
+  Widget? get _inputIcon {
+    return icon == null
+        ? null
+        : Padding(
+            padding: const EdgeInsets.only(left: 12),
+            child: Icon(icon, color: AppColors.gray30),
+          );
   }
 }

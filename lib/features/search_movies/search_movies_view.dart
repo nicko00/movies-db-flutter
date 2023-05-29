@@ -36,6 +36,7 @@ class SearchMoviesView extends StatelessWidget {
               const SizedBox(height: 4),
               DefaultTextFormField(
                 hintText: 'Pesquisar',
+                icon: Icons.search_rounded,
                 onChanged: viewModel.onChangeText,
               ),
               const SizedBox(height: 20),
