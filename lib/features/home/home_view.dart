@@ -62,7 +62,7 @@ class HomeView extends StatelessWidget {
                     ),
                     _bottomNavigationItem(
                       label: l10n.bottomNavigationFavoritesLabel,
-                      icon: Icons.favorite_rounded,
+                      icon: Icons.more_horiz_rounded,
                     ),
                   ],
                 ),

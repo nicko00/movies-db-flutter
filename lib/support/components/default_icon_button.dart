@@ -6,7 +6,7 @@ class DefaultIconButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback? onTap;
 
-  DefaultIconButton({required this.icon, this.onTap});
+  const DefaultIconButton({super.key, required this.icon, this.onTap});
 
   @override
   Widget build(BuildContext context) {

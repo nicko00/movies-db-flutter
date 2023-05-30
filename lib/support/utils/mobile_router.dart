@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../features/home/home_factory.dart';
+import '../../features/menu/menu_factory.dart';
 import '../../features/movie_details/movie_details_factory.dart';
 import '../../features/search_movies/search_movies_factory.dart';
 import '../../features/splash/splash_factory.dart';
@@ -18,5 +19,6 @@ class MobileRouter {
     },
     SearchMoviesFactory.route: (_) => SearchMoviesFactory.search(),
     SplashFactory.route: (_) => SplashFactory.splash(),
+    MenuFactory.route: (_) => MenuFactory.menu(),
   };
 }

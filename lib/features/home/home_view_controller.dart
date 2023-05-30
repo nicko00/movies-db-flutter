@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../menu/menu_factory.dart';
 import '../movies_list/movies_list_factory.dart';
 import '../search_movies/search_movies_factory.dart';
 import 'home_view.dart';
@@ -8,6 +9,7 @@ abstract class HomeProtocol extends HomeViewModelProtocol {
   set animationController(AnimationController controller);
 
   VoidCallback? onTapSelectedIndex;
+  VoidCallback? onTapMenu;
 }
 
 class HomeViewController extends StatefulWidget {
@@ -52,6 +54,9 @@ class _HomeViewControllerState extends State<HomeViewController> with TickerProv
   void _bind() {
     widget.viewModel.onTapSelectedIndex = () {
       widget.viewModel.animationController.forward(from: 0);
+    };
+    widget.viewModel.onTapMenu = () {
+      Navigator.pushNamed(context, MenuFactory.route);
     };
   }
 

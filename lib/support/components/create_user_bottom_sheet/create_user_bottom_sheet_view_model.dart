@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_gen/gen_l10n/localize.dart';
 import '../../../models/user.dart';
 import '../../utils/session_manager.dart';
@@ -39,18 +41,19 @@ class CreateUserBottomSheetViewModel extends CreateUserBottomSheetViewModelProto
 
     _setLoading(true);
 
-    try {
-      sessionManager.createSession(User.fromMap({
-        'name': _text,
-        'favorites': null,
-      })).whenComplete(() {
+    Timer(const Duration(milliseconds: 2000), (){
+      try {
+        sessionManager.createSession(User.fromMap({
+          'name': _text,
+          'favorites': null,
+        })).whenComplete(() {
+          onCreateUser?.call();
+        });
+      } on Error catch (_) {
+        _errorMessage = 'Ops! Algo deu errado. Por favor, tente novamente';
         _setLoading(false);
-        onCreateUser?.call();
-      });
-    } on Error catch (_) {
-      _errorMessage = 'Ops! Algo deu errado. Por favor, tente novamente';
-      _setLoading(false);
-    }
+      }
+    });
   }
 
   void _setLoading(bool isLoading) {
