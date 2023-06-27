@@ -83,15 +83,15 @@ class SearchMoviesView extends StatelessWidget {
             ),
             itemBuilder: (_, index) {
               final itemViewModel = viewModel.itemViewModels[index];
-        
+
               return SearchMoviesItemView(itemViewModel: itemViewModel);
             },
           ),
         ),
         Visibility(
           visible: viewModel.isRefreshLoading,
-          child: Column(
-            children: const [
+          child: const Column(
+            children: [
               Positioned(
                 bottom: 0,
                 child: LoadingView(),

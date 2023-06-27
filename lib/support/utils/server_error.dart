@@ -19,7 +19,7 @@ class ServerError {
   }
 }
 
-extension DioErrorExtension on DioError {
+extension DioErrorExtension on DioException {
   static final _l10n = Localize.instance.l10n;
 
   ServerError asServerError() {
