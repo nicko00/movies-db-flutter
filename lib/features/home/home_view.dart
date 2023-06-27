@@ -40,9 +40,7 @@ class HomeView extends StatelessWidget {
           ),
           bottomNavigationBar: Container(
             decoration: BoxDecoration(
-              border: Border(
-                top: BorderSide(color: AppColors.gray30, width: 0.4)
-              ),
+              border: Border(top: BorderSide(color: AppColors.white30, width: 0.4)),
             ),
             child: ClipRect(
               child: BackdropFilter(
@@ -79,12 +77,12 @@ class HomeView extends StatelessWidget {
       label: label,
       icon: Icon(
         icon,
-        color: AppColors.green50,
+        color: AppColors.white30,
         size: 20,
       ),
       activeIcon: Icon(
         icon,
-        color: AppColors.green,
+        color: AppColors.white,
         size: 24,
       ),
     );

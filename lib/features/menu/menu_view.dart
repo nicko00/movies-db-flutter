@@ -5,7 +5,9 @@ import '../../support/components/default_screen.dart';
 import '../../support/style/app_colors.dart';
 import '../../support/style/app_fonts.dart';
 
-abstract class MenuViewModelProtocol with ChangeNotifier {}
+abstract class MenuViewModelProtocol with ChangeNotifier {
+  void didTapProfile();
+}
 
 class MenuView extends StatelessWidget {
   final MenuViewModelProtocol viewModel;
@@ -15,9 +17,21 @@ class MenuView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultScreen(
+      scaffoldGradient: RadialGradient(
+        radius: 1.7,
+        stops: const [
+          0.9,
+          1.0,
+        ],
+        center: Alignment.topLeft,
+        colors: [
+          AppColors.darkerGray,
+          AppColors.lightGreen20,
+        ],
+      ),
       backgroundColor: AppColors.darkerGray,
       appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(32),
+        preferredSize: Size.fromHeight(92),
         child: DefaultAppBar(),
       ),
       child: Column(
@@ -29,7 +43,7 @@ class MenuView extends StatelessWidget {
                 _menuItemWidget(
                   title: 'Perfil',
                   icon: Icons.person,
-                  onTap: () {},
+                  onTap: viewModel.didTapProfile,
                 ),
                 _menuItemWidget(
                   title: 'Configurações',

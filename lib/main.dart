@@ -3,15 +3,17 @@ import 'package:flutter_gen/gen_l10n/localize.dart';
 
 import 'localization/localize.dart';
 import 'support/style/app_themes.dart';
+import 'support/utils/cache_manager.dart';
 import 'support/utils/mobile_router.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await CacheManager.instance.initialize();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {

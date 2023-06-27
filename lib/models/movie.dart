@@ -16,11 +16,22 @@ class Movie {
         description = map['overview'] ?? '',
         _posterPath = map['poster_path'],
         releaseDate = map['release_date'],
-        rating = map['vote_average'];
+        rating = map['vote_average'] ?? 0;
 
   static List<Movie> fromMaps(List<dynamic> maps) {
     return maps.map((extract) {
       return Movie.fromMap(extract);
     }).toList();
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'title': title,
+      'description': description,
+      'poster_path': _posterPath,
+      'release_date': releaseDate,
+      'rating': rating,
+    };
   }
 }

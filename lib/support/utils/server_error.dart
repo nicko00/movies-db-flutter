@@ -36,7 +36,7 @@ extension DioErrorExtension on DioError {
   ServerError mapToServerError() {
     final error = this;
 
-    if (error.type == DioErrorType.connectTimeout) {
+    if (error.type == DioExceptionType.connectionTimeout) {
       return ServerError(error: _l10n.serverErrorTimeoutError);
     }
 
@@ -55,4 +55,3 @@ extension ErrorExtension on Error {
     return ServerError(error: _l10n.serverErrorRequestError);
   }
 }
-

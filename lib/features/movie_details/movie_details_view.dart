@@ -9,16 +9,14 @@ import 'components/movie_details_bottom_sheet.dart';
 
 abstract class MovieDetailsViewModelProtocol with ChangeNotifier {
   String get movieTitle;
-
   String get moviePosterUrl;
-
   String get movieDescription;
-
   String get movieReleaseDate;
-
   double get movieRating;
+  Future<bool> get isFavorite;
 
   void didTapGoBack();
+  void didTapFavorite();
 }
 
 class MovieDetailsView extends StatelessWidget {
@@ -47,6 +45,19 @@ class MovieDetailsView extends StatelessWidget {
               child: DefaultIconButton(
                 onTap: viewModel.didTapGoBack,
                 icon: Icons.arrow_back_ios_new_rounded,
+              ),
+            ),
+            Positioned(
+              top: 36,
+              right: 8,
+              child: AnimatedBuilder(
+                animation: viewModel,
+                builder: (_, __) {
+                  return DefaultIconButton(
+                    onTap: viewModel.didTapFavorite,
+                    icon: Icons.favorite,
+                  );
+                },
               ),
             ),
           ],

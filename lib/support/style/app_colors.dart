@@ -15,6 +15,7 @@ class AppColors {
   static Color transparent = const Color.fromRGBO(130, 133, 182, 0);
   static Color lightGreen = const Color.fromRGBO(21, 180, 93, 1);
   static Color lightGreen70 = const Color.fromRGBO(21, 180, 93, 0.7);
+  static Color lightGreen20 = const Color.fromRGBO(34, 45, 35, 1.0);
   static Color green = const Color.fromRGBO(19, 145, 72, 1);
   static Color green50 = const Color.fromRGBO(16, 117, 58, 0.5);
   static Color darkGreen = const Color.fromRGBO(4, 64, 29, 1);

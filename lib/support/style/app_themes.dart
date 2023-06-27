@@ -10,13 +10,13 @@ class AppThemes {
     highlightColor: AppColors.transparent,
     scaffoldBackgroundColor: AppColors.darkGray,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      elevation: 0,
-      enableFeedback: true,
-      showUnselectedLabels: false,
-      type: BottomNavigationBarType.fixed,
-      backgroundColor: AppColors.darkerGray,
-      selectedItemColor: AppColors.lightGreen,
-    ),
+        elevation: 0,
+        enableFeedback: true,
+        showUnselectedLabels: false,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: AppColors.darkerGray,
+        selectedItemColor: AppColors.white,
+        unselectedItemColor: AppColors.white30),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         elevation: 0,

@@ -9,6 +9,7 @@ class DefaultScreen extends StatelessWidget {
   final EdgeInsetsGeometry padding;
   final bool hasTopSafeArea;
   final bool isBottomBarTransparent;
+  final Gradient? scaffoldGradient;
 
   const DefaultScreen({
     super.key,
@@ -17,6 +18,7 @@ class DefaultScreen extends StatelessWidget {
     this.backgroundColor,
     this.isBottomBarTransparent = false,
     this.padding = const EdgeInsets.all(8),
+    this.scaffoldGradient,
     required this.child,
   });
 
@@ -24,14 +26,19 @@ class DefaultScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(color: AppColors.darkGray),
-      child: Scaffold(
-        backgroundColor: backgroundColor ?? AppColors.darkGray,
-        appBar: appBar,
-        extendBody: isBottomBarTransparent,
-        body: SafeArea(
-          top: hasTopSafeArea,
-          bottom: !isBottomBarTransparent,
-          child: child,
+      child: SafeArea(
+        top: hasTopSafeArea,
+        bottom: !isBottomBarTransparent,
+        child: Scaffold(
+          backgroundColor: backgroundColor,
+          appBar: appBar,
+          extendBody: isBottomBarTransparent,
+          body: Container(
+            decoration: BoxDecoration(
+              gradient: scaffoldGradient,
+            ),
+            child: child,
+          ),
         ),
       ),
     );

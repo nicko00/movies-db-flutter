@@ -45,7 +45,7 @@ class SearchMoviesViewModel extends SearchMoviesProtocol implements SearchMovies
   void onChangeText(String text) {
     if (_countDown?.isActive ?? false) _countDown?.cancel();
 
-    _countDown = Timer(const Duration(seconds: 1), () => searchMovies(query: text));
+    _countDown = Timer(const Duration(seconds: 1), () => _searchMovies(query: text));
   }
 
   @override
@@ -63,7 +63,7 @@ class SearchMoviesViewModel extends SearchMoviesProtocol implements SearchMovies
     onTapMovieDetails?.call(movie);
   }
 
-  void searchMovies({required String query, bool isRefreshLoading = false}) {
+  void _searchMovies({required String query, bool isRefreshLoading = false}) {
     if (query.isEmpty) {
       _listMovies = [];
       notifyListeners();
@@ -77,6 +77,7 @@ class SearchMoviesViewModel extends SearchMoviesProtocol implements SearchMovies
       page: _page,
       query: query,
       success: (movies) {
+        if (!isRefreshLoading) _listMovies.clear();
         _listMovies.addAll(movies);
         _setLoading(false, isRefreshLoading: isRefreshLoading);
       },
@@ -91,7 +92,7 @@ class SearchMoviesViewModel extends SearchMoviesProtocol implements SearchMovies
     _scrollController.addListener(() {
       if (_scrollController.offset >= _scrollController.position.maxScrollExtent && !_isRefreshLoading) {
         _page++;
-        searchMovies(query: _query, isRefreshLoading: true);
+        _searchMovies(query: _query, isRefreshLoading: true);
       }
     });
   }

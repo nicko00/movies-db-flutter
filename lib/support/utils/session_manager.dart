@@ -3,7 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../../models/user.dart';
 
-abstract class SessionManagerProtocol{
+abstract class SessionManagerProtocol {
   User? get user;
   bool get hasSession;
   Future<void> verifySession();
