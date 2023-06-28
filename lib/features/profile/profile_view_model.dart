@@ -42,7 +42,9 @@ class ProfileViewModel extends ProfileProtocol implements FavoriteMovieItemViewM
 
   @override
   void didTapRemoveFavorite(Movie movie) {
-    // TODO: implement didTapRemoveFavorite
+    sharedPreferences.deleteFavorite(movie).whenComplete(() {
+      _getFavoriteMovies();
+    });
   }
 
   @override
@@ -50,6 +52,11 @@ class ProfileViewModel extends ProfileProtocol implements FavoriteMovieItemViewM
     sessionManager.verifySession();
     _getUsername();
     _getFavoriteMovies();
+  }
+
+  @override
+  Future<void> didRefresh() async {
+    loadContent();
   }
 
   void _getUsername() {

@@ -13,10 +13,11 @@ abstract class MovieDetailsViewModelProtocol with ChangeNotifier {
   String get movieDescription;
   String get movieReleaseDate;
   double get movieRating;
-  Future<bool> get isFavorite;
+  bool get isFavorite;
 
   void didTapGoBack();
-  void didTapFavorite();
+  void didTapAddFavorite();
+  void didTapRemoveFavorite();
 }
 
 class MovieDetailsView extends StatelessWidget {
@@ -26,17 +27,17 @@ class MovieDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SlidingUpPanel(
-      color: AppColors.lighterBlack,
-      parallaxEnabled: true,
-      parallaxOffset: 0.2,
-      minHeight: 252,
-      maxHeight: 400,
-      borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-      body: DefaultScreen(
-        padding: EdgeInsets.zero,
-        hasTopSafeArea: false,
-        child: Stack(
+    return DefaultScreen(
+      padding: EdgeInsets.zero,
+      hasTopSafeArea: false,
+      child: SlidingUpPanel(
+        color: AppColors.lighterBlack,
+        parallaxEnabled: true,
+        parallaxOffset: 0.2,
+        minHeight: 252,
+        maxHeight: 400,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+        body: Stack(
           children: [
             DefaultImageNetwork(imageUrl: viewModel.moviePosterUrl),
             Positioned(
@@ -53,22 +54,36 @@ class MovieDetailsView extends StatelessWidget {
               child: AnimatedBuilder(
                 animation: viewModel,
                 builder: (_, __) {
-                  return DefaultIconButton(
-                    onTap: viewModel.didTapFavorite,
-                    icon: Icons.favorite,
+                  return AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 500),
+                    child: _favoriteIconWidget,
                   );
                 },
               ),
             ),
           ],
         ),
+        panel: MovieDetailsBottomSheet(
+          title: viewModel.movieTitle,
+          overview: viewModel.movieDescription,
+          releaseDate: viewModel.movieReleaseDate,
+          rating: viewModel.movieRating,
+        ),
       ),
-      panel: MovieDetailsBottomSheet(
-        title: viewModel.movieTitle,
-        overview: viewModel.movieDescription,
-        releaseDate: viewModel.movieReleaseDate,
-        rating: viewModel.movieRating,
-      ),
+    );
+  }
+
+  Widget get _favoriteIconWidget {
+    if (viewModel.isFavorite) {
+      return DefaultIconButton(
+        onTap: viewModel.didTapRemoveFavorite,
+        icon: Icons.heart_broken_rounded,
+      );
+    }
+
+    return DefaultIconButton(
+      onTap: viewModel.didTapAddFavorite,
+      icon: Icons.favorite,
     );
   }
 }

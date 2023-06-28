@@ -4,6 +4,8 @@ import '../../support/utils/cache_manager.dart';
 import 'movie_details_view_controller.dart';
 
 class MovieDetailsViewModel extends MovieDetailsProtocol {
+  bool _isFavorite = false;
+
   final Movie movie;
   final CacheManagerProtocol sharedPreferences;
 
@@ -25,11 +27,7 @@ class MovieDetailsViewModel extends MovieDetailsProtocol {
   String get movieReleaseDate => movie.releaseDate.toFormattedDateString;
 
   @override
-  Future<bool> get isFavorite async {
-    final favoritesList = await sharedPreferences.getFavorites();
-
-    return favoritesList.contains(Movie.fromMap({'id': movie.id}));
-  }
+  bool get isFavorite => _isFavorite;
 
   @override
   void didTapGoBack() {
@@ -37,7 +35,36 @@ class MovieDetailsViewModel extends MovieDetailsProtocol {
   }
 
   @override
-  void didTapFavorite() {
-    sharedPreferences.setFavorite(movie);
+  void didTapAddFavorite() {
+    sharedPreferences.setFavorite(movie).whenComplete(() {
+      onSuccessAddToFavorite?.call();
+      _setFavoriteState(true);
+    });
+  }
+
+  @override
+  void didTapRemoveFavorite() {
+    sharedPreferences.deleteFavorite(movie).whenComplete(() {
+      onSuccessRemoveFromFavorite?.call();
+      _setFavoriteState(false);
+    });
+  }
+
+  @override
+  Future<void> verifyFavoriteState() async {
+    final favoritesList = await sharedPreferences.getFavorites();
+    for (final favorite in favoritesList) {
+      if (favorite.id == movie.id) {
+        _setFavoriteState(true);
+        break;
+      } else {
+        _setFavoriteState(false);
+      }
+    }
+  }
+
+  void _setFavoriteState(bool state) {
+    _isFavorite = state;
+    notifyListeners();
   }
 }

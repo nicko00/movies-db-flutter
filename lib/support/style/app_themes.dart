@@ -27,5 +27,8 @@ class AppThemes {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     ),
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: AppColors.black50,
+    ),
   );
 }
