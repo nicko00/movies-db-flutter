@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import '../../../support/style/app_colors.dart';
 import '../../../support/style/app_fonts.dart';
 import 'movie_details_bottom_sheet_overview.dart';
+import 'movie_from_db_tag.dart';
 import 'rating_star_indicator.dart';
 
 class MovieDetailsBottomSheet extends StatelessWidget {
   final String title;
+  final bool isFromDb;
   final double rating;
   final String overview;
   final String releaseDate;
@@ -17,6 +19,7 @@ class MovieDetailsBottomSheet extends StatelessWidget {
     required this.rating,
     required this.overview,
     required this.releaseDate,
+    this.isFromDb = false,
   });
 
   @override
@@ -34,6 +37,11 @@ class MovieDetailsBottomSheet extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               const SizedBox(height: 8),
+              Visibility(
+                visible: isFromDb,
+                child: const MovieFromDbTag(),
+              ),
+              const SizedBox(height: 12),
               Align(
                 alignment: Alignment.topCenter,
                 child: Container(

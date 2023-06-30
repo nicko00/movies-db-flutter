@@ -14,6 +14,7 @@ abstract class MovieDetailsViewModelProtocol with ChangeNotifier {
   String get movieReleaseDate;
   double get movieRating;
   bool get isFavorite;
+  bool get isFromDb;
 
   void didTapGoBack();
   void didTapAddFavorite();
@@ -68,6 +69,7 @@ class MovieDetailsView extends StatelessWidget {
           overview: viewModel.movieDescription,
           releaseDate: viewModel.movieReleaseDate,
           rating: viewModel.movieRating,
+          isFromDb: viewModel.isFromDb,
         ),
       ),
     );

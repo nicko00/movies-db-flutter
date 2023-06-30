@@ -16,7 +16,7 @@ class Movie {
         description = map['overview'] ?? '',
         _posterPath = map['poster_path'],
         releaseDate = map['release_date'],
-        rating = map['vote_average'] ?? 0;
+        rating = map['vote_average'];
 
   static List<Movie> fromMaps(List<dynamic> maps) {
     return maps.map((extract) {
@@ -28,10 +28,10 @@ class Movie {
     return {
       'id': id,
       'title': title,
-      'description': description,
+      'overview': description,
       'poster_path': _posterPath,
       'release_date': releaseDate,
-      'rating': rating,
+      'vote_average': rating,
     };
   }
 }

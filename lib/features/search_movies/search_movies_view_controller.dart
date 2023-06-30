@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../models/movie.dart';
+import '../movie_details/models/movie_details.dart';
 import '../movie_details/movie_details_factory.dart';
 import 'search_movies_view.dart';
 
@@ -37,7 +38,11 @@ class _SearchMoviesViewControllerState extends State<SearchMoviesViewController>
 
   void _bind() {
     widget.viewModel.onTapMovieDetails = (movie) {
-      Navigator.pushNamed(context, MovieDetailsFactory.route, arguments: movie);
+      Navigator.pushNamed(
+        context,
+        MovieDetailsFactory.route,
+        arguments: MovieDetails(movie: movie),
+      );
     };
   }
 }

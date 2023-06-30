@@ -8,10 +8,11 @@ import 'movie_details_view_model.dart';
 class MovieDetailsFactory {
   static const String route = '/movie_details';
 
-  static StatefulWidget movieDetails({required Movie movie}) {
+  static StatefulWidget movieDetails({required Movie movie, bool? isFromDatabase}) {
     final sharedPreferences = CacheManager.instance;
     final viewModel = MovieDetailsViewModel(
       movie: movie,
+      isFromDatabase: isFromDatabase,
       sharedPreferences: sharedPreferences,
     );
 

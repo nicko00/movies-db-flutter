@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/movie.dart';
+import '../movie_details/models/movie_details.dart';
 import '../movie_details/movie_details_factory.dart';
 import 'movies_carousel_view.dart';
 
@@ -36,7 +37,10 @@ class _MoviesCarouselViewControllerState extends State<MoviesCarouselViewControl
 
   void _bind() {
     widget.viewModel.onTapMovieDetails = (movie) {
-      Navigator.of(context).pushNamed(MovieDetailsFactory.route, arguments: movie);
+      Navigator.of(context).pushNamed(
+        MovieDetailsFactory.route,
+        arguments: MovieDetails(movie: movie),
+      );
     };
   }
 }

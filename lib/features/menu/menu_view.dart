@@ -66,16 +66,21 @@ class MenuView extends StatelessWidget {
     return SliverPadding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
       sliver: SliverToBoxAdapter(
-        child: ListTile(
-          onTap: onTap,
-          leading: Icon(
-            icon,
-            color: AppColors.white,
-            size: 24,
-          ),
-          title: Text(
-            title,
-            style: AppFonts.montserratBold(16, color: AppColors.white),
+        child: Material(
+          color: AppColors.transparent,
+          child: InkWell(
+            onTap: onTap,
+            child: ListTile(
+              leading: Icon(
+                icon,
+                color: AppColors.white,
+                size: 24,
+              ),
+              title: Text(
+                title,
+                style: AppFonts.montserratBold(16, color: AppColors.white),
+              ),
+            ),
           ),
         ),
       ),

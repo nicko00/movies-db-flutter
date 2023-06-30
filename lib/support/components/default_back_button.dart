@@ -9,10 +9,10 @@ class DefaultBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTapBack ?? Navigator.of(context).pop,
-      child: Padding(
-        padding: const EdgeInsets.all(20),
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: InkWell(
+        onTap: onTapBack ?? Navigator.of(context).pop,
         child: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(

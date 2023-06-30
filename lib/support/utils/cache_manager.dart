@@ -23,6 +23,8 @@ class CacheManager extends CacheManagerProtocol {
     _sharedPreferences = await SharedPreferences.getInstance();
   }
 
+
+  /// Favorites
   @override
   Future<List<Movie>> getFavorites() async {
     final favorites = _sharedPreferences.getString(
@@ -38,13 +40,13 @@ class CacheManager extends CacheManagerProtocol {
     final favorites = List<Movie>.empty(growable: true);
     final savedFavorites = await getFavorites();
     final favoritesList = List<Map<String, dynamic>>.empty(growable: true);
+      
+    favorites.add(movie);
 
-    if (savedFavorites.isNotEmpty) {
-      favorites.addAll(savedFavorites);
-      favorites.add(movie);
-      for (final movie in favorites) {
-        favoritesList.add(movie.toMap());
-      }
+    if (savedFavorites.isNotEmpty) favorites.addAll(savedFavorites);
+    
+    for (final movie in favorites) {
+      favoritesList.add(movie.toMap());
     }
 
     return _sharedPreferences.setString(

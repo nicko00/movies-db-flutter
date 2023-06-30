@@ -37,13 +37,16 @@ class ProfileViewModel extends ProfileProtocol implements FavoriteMovieItemViewM
 
   @override
   void didTapMovieDetails(Movie movie) {
-    // TODO: implement didTapMovieDetails
+    onTapMovieDetails?.call(movie);
   }
 
   @override
   void didTapRemoveFavorite(Movie movie) {
     sharedPreferences.deleteFavorite(movie).whenComplete(() {
-      _getFavoriteMovies();
+      _favoritesMoviesList.removeWhere((element) {
+        return element.id == movie.id;
+      });
+      notifyListeners();
     });
   }
 

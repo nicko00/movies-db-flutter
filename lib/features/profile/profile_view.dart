@@ -26,7 +26,12 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultScreen(
-      backgroundColor: AppColors.black50,
+      scaffoldGradient: LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [AppColors.black50, AppColors.darkerGray],
+        stops: const [0.5, 1],
+      ),
       child: AnimatedBuilder(
         animation: viewModel,
         builder: (_, __) {
@@ -177,7 +182,6 @@ class ProfileView extends StatelessWidget {
                 itemCount: viewModel.itemViewModels.length,
                 itemBuilder: (_, index) {
                   final itemViewModel = viewModel.itemViewModels[index];
-
                   return FavoriteMovieItemView(itemViewModel: itemViewModel);
                 },
               ),
@@ -187,6 +191,7 @@ class ProfileView extends StatelessWidget {
       ),
     );
   }
+
   Widget get _userNameWidget {
     if (viewModel.isUserLoading) {
       return Padding(

@@ -34,10 +34,18 @@ class FavoriteMovieItemView extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                DefaultImageNetwork(
-                  width: 120,
-                  height: 200,
-                  imageUrl: itemViewModel.imageUrl,
+                Container(
+                  foregroundDecoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [AppColors.transparent, AppColors.black50],
+                      stops: const [0.7, 1],
+                    ),
+                  ),
+                  child: DefaultImageNetwork(
+                    width: 120,
+                    height: 200,
+                    imageUrl: itemViewModel.imageUrl,
+                  ),
                 ),
                 const SizedBox(height: 20),
                 Flexible(

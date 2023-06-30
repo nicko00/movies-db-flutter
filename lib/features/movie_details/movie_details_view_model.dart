@@ -7,9 +7,14 @@ class MovieDetailsViewModel extends MovieDetailsProtocol {
   bool _isFavorite = false;
 
   final Movie movie;
+  final bool? isFromDatabase;
   final CacheManagerProtocol sharedPreferences;
 
-  MovieDetailsViewModel({required this.movie, required this.sharedPreferences});
+  MovieDetailsViewModel({
+    required this.movie,
+    required this.sharedPreferences,
+    this.isFromDatabase = false,
+  });
 
   @override
   String get movieDescription => movie.description;
@@ -28,6 +33,9 @@ class MovieDetailsViewModel extends MovieDetailsProtocol {
 
   @override
   bool get isFavorite => _isFavorite;
+
+  @override
+  bool get isFromDb => isFromDatabase ?? false;
 
   @override
   void didTapGoBack() {
