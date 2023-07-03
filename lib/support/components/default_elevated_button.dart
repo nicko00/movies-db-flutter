@@ -35,7 +35,7 @@ class DefaultElevatedButton extends StatelessWidget {
     );
   }
 
-  Color get _disabledButtonColor => isPrimary ? AppColors.white : AppColors.green;
+  Color get _disabledButtonColor => isPrimary ? AppColors.green : AppColors.white;
 
   Widget get _buttonChild {
     if (isLoading) {
@@ -46,13 +46,15 @@ class DefaultElevatedButton extends StatelessWidget {
       );
     }
 
-    return Text(
-      title,
-      style: AppFonts.montserratBold(13, color: _fontColor),
+    return FittedBox(
+      child: Text(
+        title,
+        style: AppFonts.montserratBold(13, color: _fontColor),
+      ),
     );
   }
 
-  Color get _buttonColor => isPrimary ? AppColors.white : AppColors.green;
+  Color get _buttonColor => isPrimary ? AppColors.green : AppColors.white;
 
   VoidCallback? get _buttonOnTap {
     if (isLoading || isDisabled) return null;
@@ -62,11 +64,11 @@ class DefaultElevatedButton extends StatelessWidget {
 
   Widget get _loadingPlaceholder {
     if (isPrimary) {
-      return LoadingView(color: AppColors.darkerGray);
+      return LoadingView(color: AppColors.white);
     }
 
-    return LoadingView(color: AppColors.white);
+    return LoadingView(color: AppColors.darkerGray);
   }
 
-  Color get _fontColor => isPrimary ? AppColors.darkerGray : AppColors.white;
+  Color get _fontColor => isPrimary ? AppColors.white : AppColors.darkerGray;
 }

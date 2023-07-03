@@ -1,14 +1,21 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localize.dart';
 
+import 'firebase_options.dart';
 import 'localization/localize.dart';
 import 'support/style/app_themes.dart';
 import 'support/utils/cache_manager.dart';
+import 'support/utils/images_manager.dart';
 import 'support/utils/mobile_router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await CacheManager.instance.initialize();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Future.wait([
+    CacheManager.instance.initialize(),
+    ImagesManager.instance.initialize(),
+  ]);
   runApp(const MyApp());
 }
 

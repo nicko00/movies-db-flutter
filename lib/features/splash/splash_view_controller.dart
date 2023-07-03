@@ -40,6 +40,7 @@ class _SplashViewControllerState extends State<SplashViewController> with Ticker
   void dispose() {
     widget.viewModel.fadeInAnimationController.dispose();
     widget.viewModel.translateAnimationController.dispose();
+    widget.viewModel.rotateAnimationController.dispose();
     super.dispose();
   }
 

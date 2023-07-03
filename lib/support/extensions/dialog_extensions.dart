@@ -1,10 +1,36 @@
 import 'package:flutter/material.dart';
 
 import '../components/create_user_bottom_sheet/create_user_bottom_sheet.dart';
+import '../components/default_bottom_sheet.dart';
 import '../style/app_colors.dart';
 import '../style/app_fonts.dart';
 
 extension DialogExtensions on State {
+  void showDefaultBottomSheet({
+    required String title,
+    String? description,
+    String? primaryButtonText,
+    String? secondaryButtonText,
+    VoidCallback? onTapPrimaryButton,
+    VoidCallback? onTapSecondaryButton,
+  }) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: AppColors.transparent,
+      barrierColor: AppColors.transparent,
+      builder: (_) {
+        return DefaultBottomSheet(
+          title: title,
+          description: description,
+          primaryButtonText: primaryButtonText,
+          secondaryButtonText: secondaryButtonText,
+          onTapPrimaryButton: onTapPrimaryButton,
+          onTapSecondaryButton: onTapSecondaryButton,
+        );
+      },
+    );
+  }
+
   void showCreateUserBottomSheet({
     required CreateUserBottomSheetViewModelProtocol viewModel,
   }) {

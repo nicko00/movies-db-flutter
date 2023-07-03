@@ -1,5 +1,6 @@
 import '../../models/movie.dart';
 import '../../support/utils/cache_manager.dart';
+import '../../support/utils/images_manager.dart';
 import '../../support/utils/session_manager.dart';
 import 'item/favorite_movie_item_view.dart';
 import 'item/favorite_movie_item_view_model.dart';
@@ -10,11 +11,17 @@ class ProfileViewModel extends ProfileProtocol implements FavoriteMovieItemViewM
   bool _isFavoritesLoading = false;
   String? _userName;
   List<Movie> _favoritesMoviesList = [];
+  String? _userPhoto;
 
   final SessionManagerProtocol sessionManager;
   final CacheManagerProtocol sharedPreferences;
+  final ImagesManagerProtocol imagesManager;
 
-  ProfileViewModel({required this.sessionManager, required this.sharedPreferences});
+  ProfileViewModel({
+    required this.sessionManager,
+    required this.sharedPreferences,
+    required this.imagesManager,
+  });
 
   @override
   bool get isUserLoading => _isUserLoading;
@@ -24,6 +31,9 @@ class ProfileViewModel extends ProfileProtocol implements FavoriteMovieItemViewM
 
   @override
   String get userName => _userName ?? '';
+
+  @override
+  String? get userPhotoUrl => _userPhoto;
 
   @override
   List<FavoriteMovieItemViewModelProtocol> get itemViewModels {
@@ -62,9 +72,36 @@ class ProfileViewModel extends ProfileProtocol implements FavoriteMovieItemViewM
     loadContent();
   }
 
+  @override
+  void didTapEditPhoto() {
+    onTapPhoto?.call();
+  }
+
+  @override
+  void uploadCameraImage() {
+    imagesManager.getCameraPhoto(
+      onSuccess: () {
+        onSuccessUploadPhoto?.call();
+        _getUserPhoto();
+      },
+      onFailure: (errorMessage) => onFailureUploadPhoto?.call(errorMessage),
+    );
+  }
+
+  @override
+  void uploadGalleryImage() {
+    imagesManager.getGalleryPhoto(
+      onSuccess: () {
+        onSuccessUploadPhoto?.call();
+        _getUserPhoto();
+      },
+      onFailure: (errorMessage) => onFailureUploadPhoto?.call(errorMessage),
+    );
+  }
+
   void _getUsername() {
     _userName = sessionManager.user?.name;
-    _setUserLoading(false);
+    _getUserPhoto();
   }
 
   Future<void> _getFavoriteMovies() async {
@@ -72,6 +109,20 @@ class ProfileViewModel extends ProfileProtocol implements FavoriteMovieItemViewM
     _favoritesMoviesList = await sharedPreferences.getFavorites().whenComplete(() {
       _setFavoritesLoading(false);
     });
+  }
+
+  Future<void> _getUserPhoto() async {
+    _setUserLoading(true);
+    await imagesManager.getPhotoFromFirebase(
+      onSuccess: (url) {
+        _userPhoto = url;
+        _setUserLoading(false);
+      },
+      onFailure: (errorMessage) {
+        onFailureGetPhoto?.call();
+        _setUserLoading(false);
+      },
+    );
   }
 
   void _setFavoritesLoading(bool isLoading) {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../support/components/default_back_button.dart';
+import '../../support/components/default_image_network.dart';
 import '../../support/components/default_screen.dart';
 import '../../support/components/placeholders/shimmer_loading_placeholder.dart';
 import '../../support/style/app_assets.dart';
@@ -13,15 +14,32 @@ abstract class ProfileViewModelProtocol with ChangeNotifier {
   bool get isFavoritesLoading;
   bool get isUserLoading;
   String get userName;
+  String? get userPhotoUrl;
   List<FavoriteMovieItemViewModelProtocol> get itemViewModels;
 
   Future<void> didRefresh();
+  void didTapEditPhoto();
 }
 
 class ProfileView extends StatelessWidget {
   final ProfileViewModelProtocol viewModel;
 
   const ProfileView({super.key, required this.viewModel});
+
+  Widget get _imageWidget {
+    final photoUrl = viewModel.userPhotoUrl;
+
+    if (photoUrl == null) {
+      return SvgPicture.asset(AppAssets.icProfile);
+    }
+
+    return DefaultImageNetwork(
+      imageUrl: photoUrl,
+      width: 74,
+      height: 74,
+      shape: BoxShape.circle,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -225,6 +243,27 @@ class ProfileView extends StatelessWidget {
       );
     }
 
-    return SvgPicture.asset(AppAssets.icProfile);
+    return Center(
+      child: Stack(
+        alignment: Alignment.bottomRight,
+        children: [
+          _imageWidget,
+          InkWell(
+            onTap: viewModel.didTapEditPhoto,
+            child: Container(
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(16)),
+                color: AppColors.white,
+              ),
+              child: Icon(
+                Icons.edit,
+                color: AppColors.lightGreen70,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

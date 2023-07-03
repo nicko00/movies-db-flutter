@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 
 import '../../models/movie.dart';
+import '../../support/extensions/dialog_extensions.dart';
 import '../movie_details/models/movie_details.dart';
 import '../movie_details/movie_details_factory.dart';
 import 'profile_view.dart';
 
 abstract class ProfileProtocol extends ProfileViewModelProtocol {
   void loadContent();
+  void uploadCameraImage();
+  void uploadGalleryImage();
 
+  VoidCallback? onTapPhoto;
+  VoidCallback? onSuccessUploadPhoto;
+  VoidCallback? onFailureGetPhoto;
+  void Function(String errorMessage)? onFailureUploadPhoto;
   void Function(Movie movie)? onTapMovieDetails;
 }
 
@@ -41,5 +48,32 @@ class _ProfileViewControllerState extends State<ProfileViewController> {
         arguments: MovieDetails(movie: movie, isFromDb: true),
       ).then((_) => widget.viewModel.loadContent());
     };
+    widget.viewModel.onTapPhoto = () {
+      showDefaultBottomSheet(
+        title: 'Perfil',
+        description: 'O que deseja fazer?',
+        primaryButtonText: 'Escolher foto da galeria',
+        secondaryButtonText: 'Tirar foto',
+        onTapPrimaryButton: widget.viewModel.uploadGalleryImage,
+        onTapSecondaryButton: widget.viewModel.uploadCameraImage,
+      );
+    };
+    widget.viewModel.onSuccessUploadPhoto = () {
+      _goBackStack();
+      showDefaultSnackBar(message: 'Imagem enviada com sucesso!');
+    };
+    widget.viewModel.onFailureUploadPhoto = (errorMessage) {
+      _goBackStack();
+      showDefaultBottomSheet(
+        title: 'Não foi possível enviar a imagem',
+        description: errorMessage,
+        primaryButtonText: 'Ok',
+        onTapPrimaryButton: Navigator.of(context).pop,
+      );
+    };
+  }
+
+  void _goBackStack() {
+    Navigator.pop(context);
   }
 }
