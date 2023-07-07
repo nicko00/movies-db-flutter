@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../api/routes/movies_routes.dart';
-import 'movies_carousel/movies_carousel_view_controller.dart';
-import 'movies_carousel/movies_carousel_view_model.dart';
+import 'movies_carousel_view_controller.dart';
+import 'movies_carousel_view_model.dart';
 import 'use_cases/get_movies_use_case.dart';
 
 class MoviesCarouselFactory {

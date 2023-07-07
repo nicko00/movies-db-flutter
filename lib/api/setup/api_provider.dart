@@ -7,7 +7,7 @@ import 'api_host.dart';
 import 'endpoint.dart';
 
 typedef Success = void Function(dynamic response);
-typedef Failure = void Function(DioError error);
+typedef Failure = void Function(DioException error);
 
 class ApiProvider {
   final Dio _dio = Dio();
@@ -30,7 +30,7 @@ class ApiProvider {
         queryParameters: endpoint.queryParameters,
       );
       success?.call(response.data);
-    } on DioError catch (error) {
+    } on DioException catch (error) {
       failure?.call(error);
     }
   }

@@ -19,7 +19,7 @@ class ServerError {
   }
 }
 
-extension DioErrorExtension on DioError {
+extension DioErrorExtension on DioException {
   static final _l10n = Localize.instance.l10n;
 
   ServerError asServerError() {
@@ -36,7 +36,7 @@ extension DioErrorExtension on DioError {
   ServerError mapToServerError() {
     final error = this;
 
-    if (error.type == DioErrorType.connectTimeout) {
+    if (error.type == DioExceptionType.connectionTimeout) {
       return ServerError(error: _l10n.serverErrorTimeoutError);
     }
 
@@ -55,4 +55,3 @@ extension ErrorExtension on Error {
     return ServerError(error: _l10n.serverErrorRequestError);
   }
 }
-

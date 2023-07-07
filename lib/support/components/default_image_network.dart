@@ -1,48 +1,75 @@
 import 'package:flutter/material.dart';
 
-import '../../localization/localize.dart';
 import '../style/app_colors.dart';
-import 'placeholders/error_view.dart';
-import 'placeholders/loading_view.dart';
+import 'placeholders/shimmer_loading_placeholder.dart';
 
 class DefaultImageNetwork extends StatelessWidget {
   final String imageUrl;
   final double? width;
   final double? height;
   final double scale;
+  final double? borderRadius;
+  final BoxFit imageFit;
+  final BoxShape shape;
 
   const DefaultImageNetwork({
     super.key,
     this.height,
     this.width,
-    required this.scale,
+    this.scale = 0,
+    this.borderRadius,
+    this.shape = BoxShape.rectangle,
+    this.imageFit = BoxFit.cover,
     required this.imageUrl,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    final radius = borderRadius;
+
+    return AnimatedContainer(
       width: width,
       height: height,
-      child: AnimatedPadding(
-        duration: const Duration(milliseconds: 500),
-        padding: EdgeInsets.all(scale),
-        child: Image.network(
-          imageUrl,
-          filterQuality: FilterQuality.high,
-          errorBuilder: (_, __, ___) {
+      clipBehavior: Clip.hardEdge,
+      decoration: BoxDecoration(
+        shape: shape,
+        borderRadius: radius == null ? null : BorderRadius.all(Radius.circular(radius)),
+      ),
+      duration: const Duration(milliseconds: 500),
+      padding: EdgeInsets.all(scale),
+      child: Image.network(
+        imageUrl,
+        fit: imageFit,
+        filterQuality: FilterQuality.high,
+        errorBuilder: (_, child, ___) {
+          return LayoutBuilder(builder: (_, constraints) {
             return Container(
-              width: 100,
-              height: 200,
+              width: constraints.maxWidth,
+              height: constraints.maxHeight,
               decoration: BoxDecoration(color: AppColors.gray30),
             );
-          },
-          loadingBuilder: (_, child, loadingProgress) {
-            if (loadingProgress == null) return child;
+          });
+        },
+        loadingBuilder: (_, child, loadingProgress) {
+          if (loadingProgress == null) return child;
 
-            return const LoadingView();
-          },
-        ),
+          return LayoutBuilder(
+            builder: (_, constraints) {
+              return ShimmerLoadingPlaceholder(
+                baseColor: AppColors.gray,
+                highlightColor: AppColors.gray30,
+                child: Container(
+                  height: constraints.maxHeight,
+                  width: constraints.maxWidth,
+                  decoration: BoxDecoration(
+                    color: AppColors.gray,
+                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                  ),
+                ),
+              );
+            },
+          );
+        },
       ),
     );
   }

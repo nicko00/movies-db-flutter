@@ -1,14 +1,26 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localize.dart';
 
+import 'firebase_options.dart';
 import 'localization/localize.dart';
 import 'support/style/app_themes.dart';
+import 'support/utils/cache_manager.dart';
+import 'support/utils/images_manager.dart';
 import 'support/utils/mobile_router.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Future.wait([
+    CacheManager.instance.initialize(),
+    ImagesManager.instance.initialize(),
+  ]);
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {

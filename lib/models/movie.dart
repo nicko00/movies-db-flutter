@@ -23,4 +23,15 @@ class Movie {
       return Movie.fromMap(extract);
     }).toList();
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'title': title,
+      'overview': description,
+      'poster_path': _posterPath,
+      'release_date': releaseDate,
+      'vote_average': rating,
+    };
+  }
 }

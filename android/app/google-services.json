@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "27137699174",
+    "project_id": "cinematica-e5089",
+    "storage_bucket": "cinematica-e5089.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27137699174:android:d993fa08602b37378c6ca7",
+        "android_client_info": {
+          "package_name": "br.com.example.cinematica"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "27137699174-1gbgpgb9gq7320olqbg5rvdg16qj9bir.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAw-vOjPKt8V0dpEZILCL0konv_ObcCoOE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "27137699174-1gbgpgb9gq7320olqbg5rvdg16qj9bir.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
