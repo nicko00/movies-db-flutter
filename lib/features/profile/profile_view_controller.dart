@@ -13,7 +13,7 @@ abstract class ProfileProtocol extends ProfileViewModelProtocol {
 
   VoidCallback? onTapPhoto;
   VoidCallback? onSuccessUploadPhoto;
-  VoidCallback? onFailureGetPhoto;
+  void Function(String errorMessage)? onFailureGetPhoto;
   void Function(String errorMessage)? onFailureUploadPhoto;
   void Function(Movie movie)? onTapMovieDetails;
 }
@@ -31,7 +31,7 @@ class _ProfileViewControllerState extends State<ProfileViewController> {
   @override
   void initState() {
     super.initState();
-    _bind();
+    if (mounted) _bind();
     widget.viewModel.loadContent();
   }
 
@@ -70,6 +70,9 @@ class _ProfileViewControllerState extends State<ProfileViewController> {
         primaryButtonText: 'Ok',
         onTapPrimaryButton: Navigator.of(context).pop,
       );
+    };
+    widget.viewModel.onFailureGetPhoto = (error) {
+      showDefaultSnackBar(message: error);
     };
   }
 

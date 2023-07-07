@@ -118,8 +118,8 @@ class ProfileViewModel extends ProfileProtocol implements FavoriteMovieItemViewM
         _userPhoto = url;
         _setUserLoading(false);
       },
-      onFailure: (errorMessage) {
-        onFailureGetPhoto?.call();
+      onFailure: (error) {
+        if (error.code != 'object-not-found') onFailureGetPhoto?.call(error.message ?? '');
         _setUserLoading(false);
       },
     );

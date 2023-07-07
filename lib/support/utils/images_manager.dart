@@ -18,7 +18,7 @@ abstract class ImagesManagerProtocol {
   });
   Future<void> getPhotoFromFirebase({
     required void Function(String url) onSuccess,
-    required void Function(String errorMessage) onFailure,
+    required void Function(FirebaseException error) onFailure,
   });
 }
 
@@ -65,18 +65,18 @@ class ImagesManager extends ImagesManagerProtocol {
   @override
   Future<void> getPhotoFromFirebase({
     required void Function(String url) onSuccess,
-    required void Function(String errorMessage) onFailure,
+    required void Function(FirebaseException error) onFailure,
   }) async {
     final userName = _sessionManager.user?.name;
     final reference = _storage.ref('files/$userName/image');
-    final downloadUrl = await reference.getDownloadURL();
 
-    if (downloadUrl.isEmpty) {
-      onFailure.call('Não foi possível fazer download da imagem');
-      return;
+    try {
+      final downloadUrl = await reference.getDownloadURL();
+
+      onSuccess.call(downloadUrl);
+    } on FirebaseException catch (error) {
+      onFailure.call(error);
     }
-
-    onSuccess.call(downloadUrl);
   }
 
   Future<void> _uploadPhoto({
@@ -87,13 +87,11 @@ class ImagesManager extends ImagesManagerProtocol {
     final userName = _sessionManager.user?.name;
     final reference = _storage.ref('files/$userName/image');
 
-    await reference
-        .putFile(pickedFile)
-        .whenComplete(
-          () => onSuccess.call(),
-        )
-        .catchError(
-          (error) => onFailure.call(error),
-        );
+    await reference.putFile(pickedFile)
+      .whenComplete(() => onSuccess.call())
+      .catchError((error) {
+        onFailure.call(error);
+        throw error;
+      });
   }
 }

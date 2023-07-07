@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/localize.dart';
 import '../../../models/user.dart';
 import '../../utils/session_manager.dart';
@@ -33,6 +34,8 @@ class CreateUserBottomSheetViewModel extends CreateUserBottomSheetViewModelProto
 
   @override
   void didTapCreate() {
+    FocusManager.instance.primaryFocus?.unfocus();
+    
     if (_text.length < 4) {
       _errorMessage = 'O nome de usuário deve ter 4 ou mais caracteres';
       notifyListeners();
@@ -41,12 +44,14 @@ class CreateUserBottomSheetViewModel extends CreateUserBottomSheetViewModelProto
 
     _setLoading(true);
 
-    Timer(const Duration(milliseconds: 2000), (){
+    Timer(const Duration(milliseconds: 2000), () {
       try {
-        sessionManager.createSession(User.fromMap({
+        sessionManager
+            .createSession(User.fromMap({
           'name': _text,
           'favorites': null,
-        })).whenComplete(() {
+        }))
+            .whenComplete(() {
           onCreateUser?.call();
         });
       } on Error catch (_) {
