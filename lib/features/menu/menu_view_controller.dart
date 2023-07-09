@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../profile/profile_factory.dart';
+import '../settings/settings_factory.dart';
 import 'menu_view.dart';
 
 abstract class MenuProtocol extends MenuViewModelProtocol {
   VoidCallback? onTapProfile;
+  VoidCallback? onTapSettings;
 }
 
 class MenuViewController extends StatefulWidget {
@@ -31,6 +33,9 @@ class _MenuViewControllerState extends State<MenuViewController> {
   void _bind() {
     widget.viewModel.onTapProfile = () {
       Navigator.pushNamed(context, ProfileFactory.route);
+    };
+    widget.viewModel.onTapSettings = () {
+      Navigator.pushNamed(context, SettingsFactory.route);
     };
   }
 }

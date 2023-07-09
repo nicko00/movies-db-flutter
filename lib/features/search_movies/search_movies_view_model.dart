@@ -70,6 +70,8 @@ class SearchMoviesViewModel extends SearchMoviesProtocol implements SearchMovies
       return;
     }
 
+    if (!isRefreshLoading) _page = 1;
+
     _query = query;
     _setLoading(true, isRefreshLoading: isRefreshLoading);
 

@@ -7,6 +7,7 @@ import '../../support/style/app_fonts.dart';
 
 abstract class MenuViewModelProtocol with ChangeNotifier {
   void didTapProfile();
+  void didTapSettings();
 }
 
 class MenuView extends StatelessWidget {
@@ -48,7 +49,7 @@ class MenuView extends StatelessWidget {
                 _menuItemWidget(
                   title: 'Configurações',
                   icon: Icons.settings_rounded,
-                  onTap: () {},
+                  onTap: viewModel.didTapSettings,
                 ),
               ],
             ),

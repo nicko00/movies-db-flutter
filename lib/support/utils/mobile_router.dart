@@ -6,6 +6,7 @@ import '../../features/movie_details/models/movie_details.dart';
 import '../../features/movie_details/movie_details_factory.dart';
 import '../../features/profile/profile_factory.dart';
 import '../../features/search_movies/search_movies_factory.dart';
+import '../../features/settings/settings_factory.dart';
 import '../../features/splash/splash_factory.dart';
 
 class MobileRouter {
@@ -25,5 +26,6 @@ class MobileRouter {
     SplashFactory.route: (_) => SplashFactory.splash(),
     MenuFactory.route: (_) => MenuFactory.menu(),
     ProfileFactory.route: (_) => ProfileFactory.profile(),
+    SettingsFactory.route: (_) => SettingsFactory.settings(),
   };
 }

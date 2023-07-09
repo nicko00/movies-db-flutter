@@ -5,9 +5,11 @@ import 'app_fonts.dart';
 
 class AppThemes {
   static final ThemeData theme = ThemeData(
+    useMaterial3: true,
     splashColor: AppColors.white10,
     colorScheme: ColorScheme.dark(secondary: AppColors.darkGreen),
     scaffoldBackgroundColor: AppColors.darkGray,
+    appBarTheme: AppBarTheme(backgroundColor: AppColors.darkGray),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
         elevation: 0,
         enableFeedback: true,
@@ -28,6 +30,26 @@ class AppThemes {
     ),
     snackBarTheme: SnackBarThemeData(
       backgroundColor: AppColors.black50,
+    ),
+    switchTheme: SwitchThemeData(
+      trackOutlineColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+        if (states.contains(MaterialState.selected)) {
+          return AppColors.darkGreen;
+        }
+        return AppColors.darkerGray;
+      }),
+      trackColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+        if (states.contains(MaterialState.selected)) {
+          return AppColors.darkGreen;
+        }
+        return AppColors.darkerGray;
+      }),
+      thumbColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+        if (states.contains(MaterialState.selected)) {
+          return AppColors.green;
+        }
+        return AppColors.black;
+      }),
     ),
   );
 }

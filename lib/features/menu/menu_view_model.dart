@@ -5,4 +5,9 @@ class MenuViewModel extends MenuProtocol {
   void didTapProfile() {
     onTapProfile?.call();
   }
+
+  @override
+  void didTapSettings() {
+    onTapSettings?.call();
+  }
 }
