@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/localize.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../localization/localize.dart';
 import '../../support/components/default_back_button.dart';
 import '../../support/components/default_image_network.dart';
 import '../../support/components/default_screen.dart';
@@ -43,6 +45,8 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = Localize.instance.l10n;
+
     return DefaultScreen(
       scaffoldGradient: LinearGradient(
         begin: Alignment.topCenter,
@@ -84,7 +88,7 @@ class ProfileView extends StatelessWidget {
                     ),
                   ),
                 ),
-                _listMoviesWidget,
+                _listMoviesWidget(l10n),
               ],
             ),
           );
@@ -93,7 +97,7 @@ class ProfileView extends StatelessWidget {
     );
   }
 
-  Widget get _listMoviesWidget {
+  Widget _listMoviesWidget(Localization l10n) {
     if (viewModel.isFavoritesLoading) {
       return SliverToBoxAdapter(
         child: Container(
@@ -107,7 +111,7 @@ class ProfileView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'Favoritos',
+                  l10n.profileFavoritesLabel,
                   style: AppFonts.montserratBold(
                     24,
                     color: AppColors.white,
@@ -153,7 +157,7 @@ class ProfileView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'Favoritos',
+                  l10n.profileFavoritesLabel,
                   style: AppFonts.montserratBold(
                     24,
                     color: AppColors.white,
@@ -163,7 +167,7 @@ class ProfileView extends StatelessWidget {
                 Expanded(
                   child: Center(
                     child: Text(
-                      'Você ainda não favoritou nenhum filme',
+                      l10n.profileFavoritesEmptyPlaceholderLabel,
                       textAlign: TextAlign.center,
                       style: AppFonts.montserratBold(16),
                     ),
@@ -188,7 +192,7 @@ class ProfileView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'Favoritos',
+                l10n.profileFavoritesLabel,
                 style: AppFonts.montserratBold(
                   24,
                   color: AppColors.white,

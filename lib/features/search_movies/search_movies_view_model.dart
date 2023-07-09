@@ -42,6 +42,9 @@ class SearchMoviesViewModel extends SearchMoviesProtocol implements SearchMovies
   bool get isRefreshLoading => _isRefreshLoading;
 
   @override
+  String get query => _query;
+
+  @override
   void onChangeText(String text) {
     if (_countDown?.isActive ?? false) _countDown?.cancel();
 

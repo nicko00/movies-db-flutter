@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../localization/localize.dart';
 import '../../support/components/default_screen.dart';
 import '../../support/components/placeholders/shimmer_loading_placeholder.dart';
 import '../../support/style/app_colors.dart';
@@ -19,6 +20,8 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = Localize.instance.l10n;
+
     return DefaultScreen(
       child: AnimatedBuilder(
         animation: viewModel,
@@ -34,7 +37,7 @@ class SettingsView extends StatelessWidget {
                   centerTitle: true,
                   expandedTitleScale: 1.2,
                   title: Text(
-                    'Configurações',
+                    l10n.settingsTitle,
                     style: AppFonts.montserratBold(32, color: AppColors.white),
                   ),
                 ),
@@ -42,7 +45,7 @@ class SettingsView extends StatelessWidget {
               _settingsItemWidget(
                 value: viewModel.isMatureContentActive,
                 onChange: viewModel.didTapToggleMatureContent,
-                label: 'Conteúdo adulto',
+                label: l10n.settingsMatureContentInputHelper,
               ),
             ],
           );

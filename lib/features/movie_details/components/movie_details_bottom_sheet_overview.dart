@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../localization/localize.dart';
 import '../../../support/style/app_colors.dart';
 import '../../../support/style/app_fonts.dart';
 
@@ -10,6 +11,8 @@ class MovieDetailsBottomSheetOverview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = Localize.instance.l10n;
+
     return Expanded(
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -18,7 +21,7 @@ class MovieDetailsBottomSheetOverview extends StatelessWidget {
           children: [
             const SizedBox(height: 16),
             Text(
-              'Sinopse',
+              l10n.movieDetailsBottomSheetOverviewTitle,
               style: AppFonts.montserratRegular(16, color: AppColors.white),
             ),
             const SizedBox(height: 16),

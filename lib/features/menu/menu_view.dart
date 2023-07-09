@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../localization/localize.dart';
 import '../../support/components/default_app_bar.dart';
 import '../../support/components/default_screen.dart';
 import '../../support/style/app_colors.dart';
@@ -17,6 +18,8 @@ class MenuView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = Localize.instance.l10n;
+
     return DefaultScreen(
       scaffoldGradient: RadialGradient(
         radius: 1.7,
@@ -42,12 +45,12 @@ class MenuView extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               slivers: [
                 _menuItemWidget(
-                  title: 'Perfil',
+                  title: l10n.menuProfileInputTitle,
                   icon: Icons.person,
                   onTap: viewModel.didTapProfile,
                 ),
                 _menuItemWidget(
-                  title: 'Configurações',
+                  title: l10n.menuSettingsInputTitle,
                   icon: Icons.settings_rounded,
                   onTap: viewModel.didTapSettings,
                 ),

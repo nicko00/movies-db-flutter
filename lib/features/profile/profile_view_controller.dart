@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../localization/localize.dart';
 import '../../models/movie.dart';
 import '../../support/extensions/dialog_extensions.dart';
 import '../movie_details/models/movie_details.dart';
@@ -28,6 +29,8 @@ class ProfileViewController extends StatefulWidget {
 }
 
 class _ProfileViewControllerState extends State<ProfileViewController> {
+  final l10n = Localize.instance.l10n;
+
   @override
   void initState() {
     super.initState();
@@ -50,24 +53,24 @@ class _ProfileViewControllerState extends State<ProfileViewController> {
     };
     widget.viewModel.onTapPhoto = () {
       showDefaultBottomSheet(
-        title: 'Perfil',
-        description: 'O que deseja fazer?',
-        primaryButtonText: 'Escolher foto da galeria',
-        secondaryButtonText: 'Tirar foto',
+        title: l10n.alertProfileAddProfilePhotoTitle,
+        description: l10n.alertProfileAddProfilePhotoMessage,
+        primaryButtonText: l10n.alertProfileAddProfilePhotoFromGallery,
+        secondaryButtonText: l10n.alertProfileAddProfilePhotoFromCamera,
         onTapPrimaryButton: widget.viewModel.uploadGalleryImage,
         onTapSecondaryButton: widget.viewModel.uploadCameraImage,
       );
     };
     widget.viewModel.onSuccessUploadPhoto = () {
       _goBackStack();
-      showDefaultSnackBar(message: 'Imagem enviada com sucesso!');
+      showDefaultSnackBar(message: l10n.alertProfileAddProfilePhotoSuccessTitle);
     };
     widget.viewModel.onFailureUploadPhoto = (errorMessage) {
       _goBackStack();
       showDefaultBottomSheet(
-        title: 'Não foi possível enviar a imagem',
+        title: l10n.alertProfileAddProfilePhotoError,
         description: errorMessage,
-        primaryButtonText: 'Ok',
+        primaryButtonText: l10n.alertDefaultConfirmInputTitle,
         onTapPrimaryButton: Navigator.of(context).pop,
       );
     };

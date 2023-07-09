@@ -1,0 +1,45 @@
+{
+    "@@locale": "es",
+    "appTitle": "Cinemática",
+  
+    "bottomNavigationHomeLabel": "Inicio",
+    "bottomNavigationSearchLabel": "Buscar",
+    "bottomNavigationFavoritesLabel": "Favoritos",
+  
+    "latestMoviesTitle": "Películas más recientes",
+    "mostPopularMoviesTitle": "Películas populares",
+    "topRatedMoviesTitle": "Las mejor valoradas",
+    "upcomingMoviesTitle": "Próximas películas",
+  
+    "searchMoviesEmptyPlaceholderLabel": "¡Oops! No hay películas con ese nombre",
+    "searchMoviesInputHelper": "Buscar",
+    "searchMoviesTitle": "Ingrese el nombre de una película",
+  
+    "movieDetailsBottomSheetTagLabel": "Datos no actualizables",
+    "movieDetailsBottomSheetOverviewTitle": "Sinopsis",
+    "alertMovieDetailsAddFavoriteTitle": "Añadido a Favoritos",
+    "alertMovieDetailsRemoveFavoriteTitle": "Eliminado de Favoritos",
+  
+    "profileFavoritesLabel": "Favoritos",
+    "profileFavoritesEmptyPlaceholderLabel": "Todavía no has marcado ninguna película como favorita",
+    "alertProfileAddProfilePhotoTitle": "Subir foto de perfil",
+    "alertProfileAddProfilePhotoMessage": "¿Qué te gustaría hacer?",
+    "alertProfileAddProfilePhotoFromGallery": "Elegir foto de la galería",
+    "alertProfileAddProfilePhotoFromCamera": "Tomar una foto",
+    "alertProfileAddProfilePhotoSuccessTitle": "¡Imagen subida con éxito!",
+    "alertProfileAddProfilePhotoError": "No se pudo subir la imagen",
+  
+    "menuProfileInputTitle": "Perfil",
+    "menuSettingsInputTitle": "Configuración",
+  
+    "settingsTitle": "Configuración",
+    "settingsMatureContentInputHelper": "Contenido para adultos",
+  
+    "alertDefaultConfirmInputTitle": "¡Ok!",
+  
+    "carouselSliderImageError": "No se pudieron cargar las imágenes",
+  
+    "serverErrorRequestError": "Se produjo un error inesperado con el servidor.",
+    "serverErrorTimeoutError": "Tiempo de espera de la solicitud agotado, por favor inténtalo de nuevo más tarde.",
+    "serverErrorMappingFailureError": "Se produjo un error en la solicitud"
+  }

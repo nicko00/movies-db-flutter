@@ -11,6 +11,32 @@
   "topRatedMoviesTitle": "Os melhores avaliados",
   "upcomingMoviesTitle": "Filmes por vir",
 
+  "searchMoviesEmptyPlaceholderLabel": "Ops! Não tem nenhum filme com esse nome",
+  "searchMoviesInputHelper": "Pesquisar",
+  "searchMoviesTitle": "Insira o nome de algum filme",
+
+  "movieDetailsBottomSheetTagLabel": "Dados não atualizáveis",
+  "movieDetailsBottomSheetOverviewTitle": "Sinopse",
+  "alertMovieDetailsAddFavoriteTitle": "Adicionado aos favoritos",
+  "alertMovieDetailsRemoveFavoriteTitle": "Removido dos favoritos",
+
+  "profileFavoritesLabel": "Favoritos",
+  "profileFavoritesEmptyPlaceholderLabel": "Você ainda não favoritou nenhum filme",
+  "alertProfileAddProfilePhotoTitle": "Enviar foto do perfil",
+  "alertProfileAddProfilePhotoMessage": "O que deseja fazer?",
+  "alertProfileAddProfilePhotoFromGallery": "Escolher foto da galeria",
+  "alertProfileAddProfilePhotoFromCamera": "Tirar foto",
+  "alertProfileAddProfilePhotoSuccessTitle": "Imagem enviada com sucesso!",
+  "alertProfileAddProfilePhotoError": "Não foi possível enviar a imagem",
+
+  "menuProfileInputTitle": "Perfil",
+  "menuSettingsInputTitle": "Configurações",
+
+  "settingsTitle": "Configurações",
+  "settingsMatureContentInputHelper": "Conteúdo adulto",
+
+  "alertDefaultConfirmInputTitle": "Ok!",
+
   "carouselSliderImageError": "Não foi possível carregar as imagens",
 
   "serverErrorRequestError": "Aconteceu um erro inesperado com o servidor.",

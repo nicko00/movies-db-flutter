@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../localization/localize.dart';
 import '../../support/extensions/dialog_extensions.dart';
 import 'movie_details_view.dart';
 
@@ -20,6 +21,8 @@ class MovieDetailsViewController extends StatefulWidget {
 }
 
 class _MovieDetailsViewControllerState extends State<MovieDetailsViewController> {
+  final l10n = Localize.instance.l10n;
+
   @override
   void initState() {
     super.initState();
@@ -38,13 +41,13 @@ class _MovieDetailsViewControllerState extends State<MovieDetailsViewController>
     };
     widget.viewModel.onSuccessAddToFavorite = () {
       showDefaultSnackBar(
-        message: 'Adicionado aos favoritos',
+        message: l10n.alertMovieDetailsAddFavoriteTitle,
         duration: 5000,
       );
     };
     widget.viewModel.onSuccessRemoveFromFavorite = () {
       showDefaultSnackBar(
-        message: 'Removido dos favoritos',
+        message: l10n.alertMovieDetailsRemoveFavoriteTitle,
         duration: 5000,
       );
     };

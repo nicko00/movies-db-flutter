@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/localize.dart';
+import '../../localization/localize.dart';
 import '../../support/components/default_screen.dart';
 import '../../support/components/default_text_form_field.dart';
 import '../../support/components/placeholders/empty_placeholder.dart';
@@ -10,6 +12,7 @@ abstract class SearchMoviesViewModelProtocol with ChangeNotifier {
   bool get isLoading;
   bool get isRefreshLoading;
   String? get errorMessage;
+  String get query;
   ScrollController get scrollController;
   List<SearchMoviesItemViewModelProtocol> get itemViewModels;
 
@@ -23,6 +26,8 @@ class SearchMoviesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = Localize.instance.l10n;
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: DefaultScreen(
@@ -35,7 +40,7 @@ class SearchMoviesView extends StatelessWidget {
             children: [
               const SizedBox(height: 4),
               DefaultTextFormField(
-                hintText: 'Pesquisar',
+                hintText: l10n.searchMoviesInputHelper,
                 icon: Icons.search_rounded,
                 onChanged: viewModel.onChangeText,
               ),
@@ -46,7 +51,7 @@ class SearchMoviesView extends StatelessWidget {
                   builder: (_, __) {
                     return AnimatedSwitcher(
                       duration: const Duration(milliseconds: 500),
-                      child: _bodyWidget,
+                      child: _bodyWidget(l10n),
                     );
                   },
                 ),
@@ -58,12 +63,19 @@ class SearchMoviesView extends StatelessWidget {
     );
   }
 
-  Widget get _bodyWidget {
+  Widget _bodyWidget(Localization l10n) {
     if (viewModel.isLoading) return const LoadingView();
 
+    if (viewModel.itemViewModels.isEmpty && viewModel.query.isEmpty) {
+      return EmptyPlaceholder(
+        message: l10n.searchMoviesEmptyPlaceholderLabel,
+        icon: Icons.search_rounded,
+      );
+    }
+
     if (viewModel.itemViewModels.isEmpty) {
-      return const EmptyPlaceholder(
-        message: 'Insira o nome de algum filme',
+      return EmptyPlaceholder(
+        message: l10n.searchMoviesTitle,
         icon: Icons.search_rounded,
       );
     }

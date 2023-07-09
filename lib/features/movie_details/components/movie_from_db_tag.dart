@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../localization/localize.dart';
 import '../../../support/style/app_colors.dart';
 import '../../../support/style/app_fonts.dart';
 
@@ -8,6 +9,8 @@ class MovieFromDbTag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = Localize.instance.l10n;
+
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
       decoration: BoxDecoration(
@@ -18,7 +21,7 @@ class MovieFromDbTag extends StatelessWidget {
         ),
       ),
       child: Text(
-        'Dados não atualizáveis',
+        l10n.movieDetailsBottomSheetTagLabel,
         style: AppFonts.montserratRegular(
           12,
           color: AppColors.white,

@@ -8,6 +8,7 @@ import 'use_cases/search_movies_use_case.dart';
 
 class SearchMoviesFactory {
   static const String route = '/search';
+
   static StatefulWidget search() {
     final l10n = Localize.instance.l10n;
     final routes = MoviesRoutes();

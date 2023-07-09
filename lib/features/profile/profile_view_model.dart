@@ -1,5 +1,6 @@
 import '../../models/movie.dart';
 import '../../support/utils/cache_manager.dart';
+import '../../support/utils/constants.dart';
 import '../../support/utils/images_manager.dart';
 import '../../support/utils/session_manager.dart';
 import 'item/favorite_movie_item_view.dart';
@@ -119,7 +120,7 @@ class ProfileViewModel extends ProfileProtocol implements FavoriteMovieItemViewM
         _setUserLoading(false);
       },
       onFailure: (error) {
-        if (error.code != 'object-not-found') onFailureGetPhoto?.call(error.message ?? '');
+        if (error.code != Constants.firebaseErrorNotFound) onFailureGetPhoto?.call(error.message ?? '');
         _setUserLoading(false);
       },
     );

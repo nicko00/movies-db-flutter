@@ -5,4 +5,5 @@ class Constants {
   static const String preferencesFavoritesListKey = 'favorites_list';
 
   static const String isMatureActiveKey = 'is_mature_content_active';
+  static const String firebaseErrorNotFound = 'object-not-found';
 }

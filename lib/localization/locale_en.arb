@@ -1,0 +1,45 @@
+{
+    "@@locale" : "en",
+    "appTitle" : "Cinematica",
+    
+    "bottomNavigationHomeLabel" : "Home",
+    "bottomNavigationSearchLabel" : "Searc",
+    "bottomNavigationFavoritesLabel" : "Favorites",
+  
+    "latestMoviesTitle": "Latest movies",
+    "mostPopularMoviesTitle": "Most Popular movies",
+    "topRatedMoviesTitle": "Top rated",
+    "upcomingMoviesTitle": "Upcoming movies",
+  
+    "searchMoviesEmptyPlaceholderLabel": "Oops! There's no movie with that name",
+    "searchMoviesInputHelper": "Search",
+    "searchMoviesTitle": "Type a movie title",
+  
+    "movieDetailsBottomSheetTagLabel": "Non-updatable data",
+    "movieDetailsBottomSheetOverviewTitle": "Overview",
+    "alertMovieDetailsAddFavoriteTitle": "Added to favorites",
+    "alertMovieDetailsRemoveFavoriteTitle": "Removed from favorites",
+  
+    "profileFavoritesLabel": "Favorites",
+    "profileFavoritesEmptyPlaceholderLabel": "You haven't favorited any movies yet",
+    "alertProfileAddProfilePhotoTitle": "Upload profile photo",
+    "alertProfileAddProfilePhotoMessage": "What would you like to do?",
+    "alertProfileAddProfilePhotoFromGallery": "Choose from gallery",
+    "alertProfileAddProfilePhotoFromCamera": "Take a photo",
+    "alertProfileAddProfilePhotoSuccessTitle": "Image uploaded successfully!",
+    "alertProfileAddProfilePhotoError": "Failed to upload the image",
+  
+    "menuProfileInputTitle": "Profile",
+    "menuSettingsInputTitle": "Settings",
+  
+    "settingsTitle": "Settings",
+    "settingsMatureContentInputHelper": "Adult content",
+  
+    "alertDefaultConfirmInputTitle": "Ok!",
+  
+    "carouselSliderImageError": "Failed to load images",
+
+    "serverErrorRequestError": "An unexpected error occurred with the server.",
+    "serverErrorTimeoutError": "Request timeout, please try again later.",
+    "serverErrorMappingFailureError": "An error occurred in the request"
+  }
