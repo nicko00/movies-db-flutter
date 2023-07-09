@@ -49,7 +49,7 @@ class MoviesListViewModel extends MoviesListProtocol {
 
   @override
   Future<void> didRefreshPage() async {
-    getMovies.call();
+    onRefresh?.call();
   }
 
   @override
