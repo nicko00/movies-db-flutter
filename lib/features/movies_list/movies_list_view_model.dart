@@ -48,6 +48,11 @@ class MoviesListViewModel extends MoviesListProtocol {
   }
 
   @override
+  Future<void> didRefreshPage() async {
+    getMovies.call();
+  }
+
+  @override
   void didChangeCurrentIndex(int index) {
     _currentIndex = index;
     notifyListeners();

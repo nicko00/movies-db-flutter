@@ -64,6 +64,7 @@ class ProfileView extends StatelessWidget {
                   leadingWidth: 84,
                   toolbarHeight: 84,
                   expandedHeight: 250,
+                  backgroundColor: AppColors.black50,
                   leading: const DefaultBackButton(),
                   flexibleSpace: FlexibleSpaceBar(
                     background: Padding(

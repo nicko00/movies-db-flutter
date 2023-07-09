@@ -18,6 +18,6 @@ class AppColors {
   static Color lightGreen20 = const Color.fromRGBO(34, 45, 35, 1.0);
   static Color green = const Color.fromRGBO(19, 145, 72, 1);
   static Color green50 = const Color.fromRGBO(16, 117, 58, 0.5);
-  static Color darkGreen = const Color.fromRGBO(4, 64, 29, 1);
+  static Color darkGreen = const Color.fromRGBO(9, 110, 51, 1);
   static Color red = const Color.fromRGBO(209, 67, 133, 1);
 }

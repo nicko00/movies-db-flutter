@@ -1,3 +1,5 @@
+import '../../support/utils/cache_manager.dart';
+import '../../support/utils/constants.dart';
 import '../setup/api_host.dart';
 import '../setup/api_provider.dart';
 import '../setup/endpoint.dart';
@@ -24,7 +26,7 @@ class MoviesRoutes extends MoviesRoutesProtocol {
         'page': '$page',
         'api_key': ApiHost.apiKey,
         'language': 'pt-BR',
-        // 'include_adult': 'true',
+        'include_adult': isMatureContentActive.toString(),
       },
     );
 
@@ -41,10 +43,14 @@ class MoviesRoutes extends MoviesRoutesProtocol {
         'api_key': ApiHost.apiKey,
         'query': query,
         'language': 'pt-BR',
-        // 'include_adult': 'true',
+        'include_adult': isMatureContentActive.toString(),
       },
     );
 
     _provider.request(endpoint: endpoint, success: success, failure: failure);
+  }
+
+  bool get isMatureContentActive {
+    return CacheManager.instance.getBool(Constants.isMatureActiveKey);
   }
 }
