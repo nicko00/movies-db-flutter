@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.example.setup">
    <application
-        android:label="setup"
+        android:label="Cinematica"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
